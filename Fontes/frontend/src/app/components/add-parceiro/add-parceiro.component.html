@@ -1,0 +1,79 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Parceiro"
+          type="text"
+          id="parceiro"
+          required
+          [(ngModel)]="parceiro.parceiro"
+          name="parceiro"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Nome"
+          type="text"
+          id="nome"
+          required
+          [(ngModel)]="parceiro.nome"
+          name="nome"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Fantasia"
+          type="text"
+          id="fantasia"
+          required
+          [(ngModel)]="parceiro.fantasia"
+          name="fantasia"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="CpfCnpj"
+          type="text"
+          id="cpfCnpj"
+          required
+          [(ngModel)]="parceiro.cpfCnpj"
+          name="cpfCnpj"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Site"
+          type="text"
+          id="site"
+          required
+          [(ngModel)]="parceiro.site"
+          name="site"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Telefone"
+          type="text"
+          id="telefone"
+          required
+          [(ngModel)]="parceiro.telefone"
+          name="telefone"
+        />
+      </mat-form-field>
+
+      <button (click)="saveParceiro()" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+</div>

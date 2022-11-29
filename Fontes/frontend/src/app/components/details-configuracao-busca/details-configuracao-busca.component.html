@@ -1,0 +1,85 @@
+  <div>
+    <div *ngIf="configuracaoBusca.id" class="edit-form">
+      <h4>ConfiguracaoBusca</h4>
+      <form>
+      <div class="form-group">
+        <label for="codigo">Codigo</label>
+        <input
+          type="text"
+          class="form-control"
+          id="codigo"
+          required
+          [(ngModel)]="configuracaoBusca.codigo"
+          name="codigo"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descricao</label>
+        <input
+          type="text"
+          class="form-control"
+          id="descricao"
+          required
+          [(ngModel)]="configuracaoBusca.descricao"
+          name="descricao"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="parceiro">Parceiro</label>
+        <input
+          type="text"
+          class="form-control"
+          id="parceiro"
+          required
+          [(ngModel)]="configuracaoBusca.parceiro"
+          name="parceiro"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="urlbusca">Url Busca</label>
+        <input
+          type="text"
+          class="form-control"
+          id="urlbusca"
+          required
+          [(ngModel)]="configuracaoBusca.urlbusca"
+          name="urlbusca"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="variaveis">Variaveis</label>
+        <input
+          type="text"
+          class="form-control"
+          id="variaveis"
+          required
+          [(ngModel)]="configuracaoBusca.variaveis"
+          name="variaveis"
+        />
+      </div>
+
+      </form>
+
+      <button class="badge badge-danger mr-2" (click)="deleteConfiguracaoBusca()">
+        Excluir
+      </button>
+
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateConfiguracaoBusca()"
+      >
+        Gravar
+      </button>
+      <p>{{ message }}</p>
+    </div>
+
+    <div *ngIf="!configuracaoBusca.id">
+      <br />
+      <p>Não foi possível carregar essa entidade de ConfiguracaoBusca...</p>
+    </div>
+  </div>

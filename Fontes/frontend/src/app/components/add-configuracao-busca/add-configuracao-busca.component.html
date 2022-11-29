@@ -1,0 +1,55 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Codigo"
+          type="text"
+          id="codigo"
+          required
+          [(ngModel)]="configuracaoBusca.codigo"
+          name="codigo"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Descricao"
+          type="text"
+          id="descricao"
+          required
+          [(ngModel)]="configuracaoBusca.descricao"
+          name="descricao"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Url Busca"
+          type="text"
+          id="urlbusca"
+          required
+          [(ngModel)]="configuracaoBusca.urlbusca"
+          name="urlbusca"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Variaveis"
+          type="text"
+          id="variaveis"
+          required
+          [(ngModel)]="configuracaoBusca.variaveis"
+          name="variaveis"
+        />
+      </mat-form-field>
+
+      <button (click)="saveConfiguracaoBusca()" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+</div>

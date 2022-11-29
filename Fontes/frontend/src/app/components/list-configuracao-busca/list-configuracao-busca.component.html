@@ -1,0 +1,67 @@
+<div class="list row">
+    <div class="col-md-8">
+        <div class="input-group mb-3">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Procurar por Descricao"
+                [(ngModel)]="descricao"
+            />
+            <div class="input-group-append">
+                <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    (click)="searchDescricao()"
+                >
+                    Procurar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4>Lista de ConfiguracoesBuscas</h4>
+        <ul class="list-group">
+        <li
+            class="list-group-item"
+            *ngFor="let configuracaoBusca of ConfiguracaoBuscaCollection; let i = index"
+            [class.active]="i == currentIndex"
+            (click)="setActiveConfiguracaoBusca(configuracaoBusca, i)"
+        >
+            {{ configuracaoBusca.codigo }} {{ configuracaoBusca.descricao }} {{ configuracaoBusca.parceiro }} {{ configuracaoBusca.urlbusca }} {{ configuracaoBusca.variaveis }} 
+        </li>
+        </ul>
+
+        <button class="m-3 btn btn-sm btn-danger" (click)="removeAllConfiguracoesBuscas()">
+        Remover Tudo
+        </button>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="currentConfiguracaoBusca.id">
+        <h4>ConfiguracaoBusca</h4>
+        <div>
+            <label><strong>Código:</strong></label> {{ currentConfiguracaoBusca.codigo }}
+        </div>
+        <div>
+            <label><strong>Descricao:</strong></label> {{ currentConfiguracaoBusca.descricao }}
+        </div>
+        <div>
+            <label><strong>Parceiro:</strong></label> {{ currentConfiguracaoBusca.parceiro }}
+        </div>
+        <div>
+            <label><strong>Urlbusca:</strong></label> {{ currentConfiguracaoBusca.urlbusca }}
+        </div>
+        <div>
+            <label><strong>Variaveis:</strong></label> {{ currentConfiguracaoBusca.variaveis }}
+        </div>
+
+        <a class="badge badge-warning" routerLink="/configuracoes-buscas/{{ currentConfiguracaoBusca.id }}">
+            Editar
+        </a>
+        </div>
+
+        <div *ngIf="!currentConfiguracaoBusca">
+        <br />
+        <p>Por favor selecione uma linha da lista de ConfiguracaoBusca...</p>
+        </div>
+    </div>
+</div>

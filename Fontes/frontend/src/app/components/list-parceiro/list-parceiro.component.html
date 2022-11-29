@@ -1,0 +1,70 @@
+<div class="list row">
+    <div class="col-md-8">
+        <div class="input-group mb-3">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Procurar por Nome"
+                [(ngModel)]="nome"
+            />
+            <div class="input-group-append">
+                <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    (click)="searchNome()"
+                >
+                    Procurar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4>Lista de Parceiros</h4>
+        <ul class="list-group">
+        <li
+            class="list-group-item"
+            *ngFor="let parceiro of ParceiroCollection; let i = index"
+            [class.active]="i == currentIndex"
+            (click)="setActiveParceiro(parceiro, i)"
+        >
+            {{ parceiro.parceiro }} {{ parceiro.nome }} {{ parceiro.fantasia }} {{ parceiro.cpfCnpj }} {{ parceiro.site }} {{ parceiro.telefone }} 
+        </li>
+        </ul>
+
+        <button class="m-3 btn btn-sm btn-danger" (click)="removeAllParceiros()">
+        Remover Tudo
+        </button>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="currentParceiro.id">
+        <h4>Parceiro</h4>
+        <div>
+            <label><strong>Parceiro:</strong></label> {{ currentParceiro.parceiro }}
+        </div>
+        <div>
+            <label><strong>Nome:</strong></label> {{ currentParceiro.nome }}
+        </div>
+        <div>
+            <label><strong>Fantasia:</strong></label> {{ currentParceiro.fantasia }}
+        </div>
+        <div>
+            <label><strong>CpfCnpj:</strong></label> {{ currentParceiro.cpfCnpj }}
+        </div>
+        <div>
+            <label><strong>Site:</strong></label> {{ currentParceiro.site }}
+        </div>
+        <div>
+            <label><strong>Telefone:</strong></label> {{ currentParceiro.telefone }}
+        </div>
+
+        <a class="badge badge-warning" routerLink="/parceiros/{{ currentParceiro.id }}">
+            Editar
+        </a>
+        </div>
+
+        <div *ngIf="!currentParceiro">
+        <br />
+        <p>Por favor selecione uma linha da lista de Parceiro...</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,336 @@
+<map version="1.0.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1657460228606" ID="ID_634150733" MODIFIED="1667255915885" TEXT="NadirDigital">
+<node CREATED="1657547133760" ID="ID_673927625" MODIFIED="1664651639315" POSITION="right" TEXT="config">
+<node CREATED="1657622005294" ID="ID_6408575" LINK="mapperidea.mm" MODIFIED="1657622005296" TEXT="mapperidea"/>
+</node>
+<node CREATED="1658082382585" ID="ID_822901468" LINK="window.mm" MODIFIED="1666718921186" POSITION="right" TEXT="window">
+<icon BUILTIN="Package"/>
+<node CREATED="1665861251724" ID="ID_887788670" MODIFIED="1665861257450" TEXT="@">
+<node CREATED="1665861258863" ID="ID_178988103" MODIFIED="1665861264460" TEXT="rootMenu">
+<icon BUILTIN="element"/>
+</node>
+<node CREATED="1666035316386" ID="ID_845110931" MODIFIED="1667261156979" TEXT="tituloProj">
+<icon BUILTIN="element"/>
+<node CREATED="1666035324072" ID="ID_1983641467" MODIFIED="1667261162949" TEXT="NadirDigital">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1642160626075" ID="ID_1462344668" MODIFIED="1667338034952" POSITION="right" TEXT="patterns">
+<icon BUILTIN="Package"/>
+<node CREATED="1642160635766" ID="ID_1466278029" MODIFIED="1666817539045" TEXT="Labels">
+<icon BUILTIN="Descriptor.class"/>
+<node CREATED="1642160657718" ID="ID_651471214" MODIFIED="1665022828258" TEXT="@">
+<node CREATED="1642160674682" ID="ID_140425080" MODIFIED="1667338010047" TEXT="codigo">
+<icon BUILTIN="element"/>
+<node CREATED="1642160692371" ID="ID_1748494247" MODIFIED="1642160696897" TEXT="C&#xf3;digo">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1642161238443" ID="ID_760628158" MODIFIED="1667338010791" TEXT="cepPadrao">
+<icon BUILTIN="element"/>
+<node CREATED="1642161242750" ID="ID_988433622" MODIFIED="1642161249265" TEXT="CEP Padr&#xe3;o">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1658240595266" ID="ID_1994936998" MODIFIED="1667338001111" TEXT="nomeFazenda">
+<icon BUILTIN="element"/>
+<node CREATED="1658240601633" ID="ID_986586405" MODIFIED="1658240611039" TEXT="Nome da fazenda">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1642160635766" ID="ID_887318521" MODIFIED="1667337940327" TEXT="Index">
+<icon BUILTIN="Descriptor.class"/>
+<node CREATED="1642160657718" ID="ID_1649148809" MODIFIED="1665022828258" TEXT="@">
+<node CREATED="1642160674682" ID="ID_1203698811" MODIFIED="1665022900760" TEXT="bovino">
+<icon BUILTIN="element"/>
+<node CREATED="1642160692371" ID="ID_446673625" MODIFIED="1665023042696" TEXT="bovinos">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1642161238443" ID="ID_1372697182" MODIFIED="1665023034542" TEXT="evento">
+<icon BUILTIN="element"/>
+<node CREATED="1642161242750" ID="ID_944034288" MODIFIED="1665023050869" TEXT="eventos">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1665772199290" ID="ID_913372290" MODIFIED="1666817548682" TEXT="Component">
+<icon BUILTIN="Descriptor.class"/>
+<node CREATED="1665772206066" ID="ID_1455197239" MODIFIED="1665772208035" TEXT="@">
+<node CREATED="1664651727612" ID="ID_934667581" MODIFIED="1665772239827" TEXT="AddBovino">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_1249566798" MODIFIED="1665771726156" TEXT="add-bovino">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1664651842793" ID="ID_862663837" MODIFIED="1665772244527" TEXT="AddEvento">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_1086056499" MODIFIED="1665771734071" TEXT="add-evento">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1664651847880" ID="ID_119063235" MODIFIED="1665772248743" TEXT="Bovino">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_704256986" MODIFIED="1665771740119" TEXT="bovino">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1665771645561" ID="ID_1690098776" MODIFIED="1665772253920" TEXT="DetailsBovino">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_1895568919" MODIFIED="1665771748400" TEXT="details-bovino">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1665771651228" ID="ID_1204529552" MODIFIED="1665772258409" TEXT="ListBovino">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_1506621039" MODIFIED="1665771763633" TEXT="list-bovino">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1665771656717" ID="ID_467078963" MODIFIED="1665772264433" TEXT="ListEvento">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_1535020856" MODIFIED="1665771772045" TEXT="list-evento">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1665771666515" ID="ID_1144845506" MODIFIED="1665772267592" TEXT="RegistoProducao">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_1182613616" MODIFIED="1665771779810" TEXT="registo-producao">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1665771674134" ID="ID_1045892495" MODIFIED="1665772273340" TEXT="VariedadeBovino">
+<icon BUILTIN="element"/>
+<node CREATED="1665771700413" ID="ID_1465053716" MODIFIED="1665771787364" TEXT="variedade-bovino">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1667256099424" ID="ID_1958025243" MODIFIED="1667256107367" POSITION="right" TEXT="domain">
+<icon BUILTIN="Package"/>
+<node CREATED="1667256109434" ID="ID_786304454" MODIFIED="1667263447277" TEXT="Item">
+<icon BUILTIN="Descriptor.bean"/>
+<node CREATED="1657862910856" ID="ID_1060002428" MODIFIED="1667257417729" TEXT="@">
+<node CREATED="1657992893486" ID="ID_70933448" MODIFIED="1666054588426" TEXT="plural">
+<icon BUILTIN="element"/>
+<node CREATED="1657992899676" ID="ID_1413401090" MODIFIED="1667257420794" TEXT="Itens">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1657862917637" ID="ID_606803458" MODIFIED="1667392719918" TEXT="searchable">
+<icon BUILTIN="element"/>
+<node CREATED="1657862934723" ID="ID_899109862" MODIFIED="1667393539012" TEXT="descricao">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+<node CREATED="1667256214774" ID="ID_898325056" MODIFIED="1667256239873" TEXT="atributos">
+<icon BUILTIN="Descriptor.grouping"/>
+<node CREATED="1667256231368" ID="ID_1217083256" MODIFIED="1667256280036" TEXT="item: Numero()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256258137" ID="ID_719436928" MODIFIED="1667256538452" TEXT="descricao: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256465258" ID="ID_1744831588" MODIFIED="1667256484290" TEXT="barras: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256553521" ID="ID_902849910" MODIFIED="1667256586556" TEXT="quantidadeEstoque: Numero()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256491666" ID="ID_972919712" MODIFIED="1667256509048" TEXT="preco: Numero()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256502289" ID="ID_1385816990" MODIFIED="1667256521207" TEXT="precominimo: Numero()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256696174" ID="ID_897869759" MODIFIED="1667256737406" TEXT="referencia: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256719111" ID="ID_927345393" MODIFIED="1667256737407" TEXT="marca: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256365806" ID="ID_421632414" MODIFIED="1667256429607" TEXT="imagensdoitem: ImagemDeItem()">
+<icon BUILTIN="Mapping.oneToMany"/>
+</node>
+<node CREATED="1667256647760" ID="ID_1514457409" MODIFIED="1667256683205" TEXT="fornecedoresdoitem: FornecedorDeItem()">
+<icon BUILTIN="Mapping.oneToMany"/>
+</node>
+</node>
+<node CREATED="1667263453552" ID="ID_585624801" MODIFIED="1667263537571" TEXT="metodos">
+<icon BUILTIN="Method.public"/>
+<node CREATED="1667263479593" ID="ID_1939542917" MODIFIED="1667263485643" TEXT="buscaImagens()"/>
+<node CREATED="1667263495561" ID="ID_615920377" MODIFIED="1667263528223" TEXT="importaDoERP()"/>
+</node>
+</node>
+<node CREATED="1667256152213" ID="ID_313440398" MODIFIED="1667391928779" TEXT="ImagemDeItem">
+<icon BUILTIN="Descriptor.bean"/>
+<node CREATED="1657862910856" ID="ID_1778340818" MODIFIED="1667257396622" TEXT="@">
+<node CREATED="1657992893486" ID="ID_19335299" MODIFIED="1666054588426" TEXT="plural">
+<icon BUILTIN="element"/>
+<node CREATED="1657992899676" ID="ID_146646862" MODIFIED="1667257393180" TEXT="ImagensDeItens">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1657862917637" ID="ID_1175408985" MODIFIED="1667392719918" TEXT="searchable">
+<icon BUILTIN="element"/>
+<node CREATED="1657862934723" ID="ID_95981423" MODIFIED="1667393529738" TEXT="descricao">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+<node CREATED="1667256223755" ID="ID_508751694" MODIFIED="1667256243154" TEXT="atributos">
+<icon BUILTIN="Descriptor.grouping"/>
+<node CREATED="1667256287583" ID="ID_903957750" MODIFIED="1667256775220" TEXT="imagemdeitem: Numero()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256311961" ID="ID_251294377" MODIFIED="1667256776981" TEXT="descricao: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256312554" ID="ID_899896154" MODIFIED="1667256778517" TEXT="link: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+</node>
+</node>
+<node CREATED="1667256116420" ID="ID_738021298" MODIFIED="1667338325159" TEXT="FornecedorDeItem">
+<icon BUILTIN="Descriptor.bean"/>
+<node CREATED="1657862910856" ID="ID_1970608409" MODIFIED="1667257398716" TEXT="@">
+<node CREATED="1657992893486" ID="ID_226569013" MODIFIED="1666054588426" TEXT="plural">
+<icon BUILTIN="element"/>
+<node CREATED="1657992899676" ID="ID_90457900" MODIFIED="1667257379978" TEXT="FornecedoresDeItens">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1657862917637" ID="ID_484229649" MODIFIED="1667392719918" TEXT="searchable">
+<icon BUILTIN="element"/>
+<node CREATED="1657862934723" ID="ID_111261754" MODIFIED="1667393523596" TEXT="codigo">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+<node CREATED="1667256223755" ID="ID_1667517745" MODIFIED="1667256244545" TEXT="atributos">
+<icon BUILTIN="Descriptor.grouping"/>
+<node CREATED="1667256783104" ID="ID_675415347" MODIFIED="1667256833069" TEXT="codigo: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256793703" ID="ID_1561463079" MODIFIED="1667256828238" TEXT="parceiro: Parceiro()">
+<icon BUILTIN="Mapping.oneToOne"/>
+</node>
+<node CREATED="1667256834509" ID="ID_601791939" MODIFIED="1667256881905" TEXT="item: Item()">
+<icon BUILTIN="Mapping.manyToOne"/>
+</node>
+</node>
+</node>
+<node CREATED="1667256137901" ID="ID_1374960013" MODIFIED="1667391921155" TEXT="Parceiro">
+<icon BUILTIN="Descriptor.bean"/>
+<node CREATED="1657862910856" ID="ID_714997384" MODIFIED="1667257404868" TEXT="@">
+<node CREATED="1657992893486" ID="ID_1630683828" MODIFIED="1666054588426" TEXT="plural">
+<icon BUILTIN="element"/>
+<node CREATED="1657992899676" ID="ID_154263831" MODIFIED="1667257367854" TEXT="Parceiros">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1657862917637" ID="ID_680555408" MODIFIED="1667392719918" TEXT="searchable">
+<icon BUILTIN="element"/>
+<node CREATED="1657862934723" ID="ID_1138052349" MODIFIED="1657862945432" TEXT="nome">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+<node CREATED="1667256223755" ID="ID_1056272219" MODIFIED="1667256246146" TEXT="atributos">
+<icon BUILTIN="Descriptor.grouping"/>
+<node CREATED="1667256902796" ID="ID_243362813" MODIFIED="1667257003827" TEXT="parceiro: Numero()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256904911" ID="ID_288591897" MODIFIED="1667256999957" TEXT="nome: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256905521" ID="ID_182648150" MODIFIED="1667256996556" TEXT="fantasia: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667256946495" ID="ID_150242119" MODIFIED="1667256993647" TEXT="cpfCnpj: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667257013671" ID="ID_636100714" MODIFIED="1667257020242" TEXT="site: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667257036623" ID="ID_1201649302" MODIFIED="1667257053086" TEXT="telefone: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+</node>
+</node>
+<node CREATED="1667257071133" ID="ID_499215499" MODIFIED="1667262540399" TEXT="ConfiguracaoBusca">
+<icon BUILTIN="Descriptor.bean"/>
+<node CREATED="1657862910856" ID="ID_1863921074" MODIFIED="1667257346137" TEXT="@">
+<node CREATED="1657992893486" ID="ID_1768134603" MODIFIED="1666054588426" TEXT="plural">
+<icon BUILTIN="element"/>
+<node CREATED="1657992899676" ID="ID_65157424" MODIFIED="1667257356989" TEXT="ConfiguracoesBuscas">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1657862917637" ID="ID_1962265456" MODIFIED="1667392719918" TEXT="searchable">
+<icon BUILTIN="element"/>
+<node CREATED="1657862934723" ID="ID_67134180" MODIFIED="1667393512499" TEXT="descricao">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+<node CREATED="1667257084327" ID="ID_1580575879" MODIFIED="1667257088852" TEXT="atributos">
+<icon BUILTIN="Descriptor.grouping"/>
+<node CREATED="1667257090286" ID="ID_815912793" MODIFIED="1667257114732" TEXT="codigo: Numero()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667257126142" ID="ID_1023462363" MODIFIED="1667257135188" TEXT="descricao: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667257140402" ID="ID_1445048646" MODIFIED="1667257170609" TEXT="parceiro: Parceiro()">
+<icon BUILTIN="Mapping.oneToOne"/>
+</node>
+<node CREATED="1667257185640" ID="ID_453513864" MODIFIED="1667257208089" TEXT="urlbusca: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667257223322" ID="ID_1647909650" MODIFIED="1667257239404" TEXT="variaveis: Variavel()">
+<icon BUILTIN="Mapping.oneToMany"/>
+</node>
+</node>
+</node>
+<node CREATED="1667257246295" ID="ID_374542736" MODIFIED="1667391950839" TEXT="Variavel">
+<icon BUILTIN="Descriptor.bean"/>
+<node CREATED="1657862910856" ID="ID_1540330302" MODIFIED="1667257409304" TEXT="@">
+<node CREATED="1657992893486" ID="ID_21991602" MODIFIED="1666054588426" TEXT="plural">
+<icon BUILTIN="element"/>
+<node CREATED="1657992899676" ID="ID_908312104" MODIFIED="1667257412743" TEXT="Variaveis">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+<node CREATED="1657862917637" ID="ID_169190806" MODIFIED="1667392719918" TEXT="searchable">
+<icon BUILTIN="element"/>
+<node CREATED="1657862934723" ID="ID_1674090271" MODIFIED="1657862945432" TEXT="nome">
+<icon BUILTIN="tag_green"/>
+</node>
+</node>
+</node>
+<node CREATED="1667257250146" ID="ID_183294103" MODIFIED="1667257254965" TEXT="atributos">
+<icon BUILTIN="Descriptor.grouping"/>
+<node CREATED="1667257262650" ID="ID_603984275" MODIFIED="1667257299549" TEXT="nome: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667257274184" ID="ID_470681927" MODIFIED="1667257303441" TEXT="valor: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+<node CREATED="1667257283253" ID="ID_1472024247" MODIFIED="1667257306735" TEXT="tipo: Texto()">
+<icon BUILTIN="Mapping.directToField"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+</map>
