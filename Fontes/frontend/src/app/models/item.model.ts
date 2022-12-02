@@ -11,7 +11,7 @@ export class Item {
     precominimo?: number;
     referencia?: string;
     marca?: string;
-    imagensdoitem?: ImagemDeItem[];
+    imagensdoitem?: string;
     fornecedoresdoitem?: FornecedorDeItem[];
 }
 

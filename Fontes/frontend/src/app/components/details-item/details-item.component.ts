@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from 'src/app/services/item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/models/item.model';
+import { ImagemDeItem } from 'src/app/models/imagem-de-item.model';
 
 @Component({
   selector: 'app-details-item',
@@ -21,8 +22,7 @@ export class DetailsItemComponent implements OnInit {
     marca: '',
   };
   message = '';
-  debug = true;
-
+  debug = true
 
   constructor(
     private itemService: ItemService,

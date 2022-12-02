@@ -5,6 +5,5 @@ export class FornecedorDeItem {
     id?: any;
     codigo?: string;
     parceiro?: Parceiro;
-    item?: Item;
 }
 

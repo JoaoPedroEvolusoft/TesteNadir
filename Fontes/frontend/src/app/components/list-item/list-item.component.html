@@ -27,7 +27,7 @@
             [class.active]="i == currentIndex"
             (click)="setActiveItem(item, i)"
         >
-            {{ item.item }} {{ item.descricao }} {{ item.barras }} {{ item.quantidadeEstoque }} {{ item.preco }} {{ item.precominimo }} {{ item.referencia }} {{ item.marca }} {{ item.imagensdoitem }} 
+            {{ item.item }} {{ item.descricao }} {{ item.barras }} {{ item.quantidadeEstoque }} {{ item.preco }} {{ item.precominimo }} {{ item.referencia }} {{ item.marca }} 
         </li>
         </ul>
 
@@ -39,35 +39,10 @@
         <div *ngIf="currentItem.id">
         <h4>Item</h4>
         <div>
-            <label><strong>Item:</strong></label> {{ currentItem.item }}
-        </div>
-        <div>
-            <label><strong>Descricao:</strong></label> {{ currentItem.descricao }}
-        </div>
-        <div>
-            <label><strong>Barras:</strong></label> {{ currentItem.barras }}
-        </div>
-        <div>
-            <label><strong>QuantidadeEstoque:</strong></label> {{ currentItem.quantidadeEstoque }}
-        </div>
-        <div>
-            <label><strong>Preco:</strong></label> {{ currentItem.preco }}
-        </div>
-        <div>
-            <label><strong>Precominimo:</strong></label> {{ currentItem.precominimo }}
-        </div>
-        <div>
-            <label><strong>Referencia:</strong></label> {{ currentItem.referencia }}
-        </div>
-        <div>
             <label><strong>Marca:</strong></label> {{ currentItem.marca }}
         </div>
-        <div>
-            <label><strong>Imagensdoitem:</strong></label> {{ currentItem.imagensdoitem }}
-        </div>
-        <div>
-            <label><strong>Fornecedoresdoitem:</strong></label> {{ currentItem.fornecedoresdoitem }}
-        </div>
+        <img src="{{ currentItem.imagensdoitem }}" width="200" >
+        
 
         <a class="badge badge-warning" routerLink="/itens/{{ currentItem.id }}">
             Editar

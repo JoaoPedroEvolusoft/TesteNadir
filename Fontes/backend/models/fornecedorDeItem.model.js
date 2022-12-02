@@ -6,22 +6,6 @@ module.exports = mongoose => {
     {
       codigo: String,
         parceiro: {type: Schema.Types.ObjectId, ref: 'Parceiro'}, 
-  item: {
-      item: Number,
-      descricao: String,
-      barras: String,
-      quantidadeEstoque: Number,
-      preco: Number,
-      precominimo: Number,
-      referencia: String,
-      marca: String,
-        imagensdoitem: [ 
-          [{type: Schema.Types.ObjectId, ref: 'ImagemDeItem'}] 
-        ], 
-        fornecedoresdoitem: [ 
-          [{type: Schema.Types.ObjectId, ref: 'FornecedorDeItem'}] 
-        ], 
-  }
     },
     { timestamps: true }
   );
