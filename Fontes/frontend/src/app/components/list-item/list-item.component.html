@@ -27,7 +27,7 @@
             [class.active]="i == currentIndex"
             (click)="setActiveItem(item, i)"
         >
-            {{ item.item }} {{ item.descricao }} {{ item.barras }} {{ item.quantidadeEstoque }} {{ item.preco }} {{ item.precominimo }} {{ item.referencia }} {{ item.marca }} 
+        <b>Item: </b>{{ item.item }} <b>Descricao:</b> {{ item.descricao }} <b>Barras:</b> {{ item.barras }} <b>Estoque:</b> {{ item.quantidadeEstoque }} <b>Preço: </b>{{ item.preco }} <b>Marca: </b>{{ item.marca }} 
         </li>
         </ul>
 
