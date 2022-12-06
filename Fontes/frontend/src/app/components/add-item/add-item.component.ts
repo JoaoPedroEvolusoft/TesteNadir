@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ImagemDeItem } from 'src/app/models/imagem-de-item.model';
 import { Item } from 'src/app/models/item.model';
+import { ImagemDeItemService } from 'src/app/services/imagem-de-item.service';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -9,51 +13,67 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class AddItemComponent implements OnInit {
 
-  item: Item = {
-    item: 0,
-    descricao: '',
-    barras: '',
-    quantidadeEstoque: 0,
-    preco: 0,
-    precominimo: 0,
-    referencia: '',
-    marca: '',
+  debug: boolean = false;
+  imgItem: ImagemDeItem = {
+    imagemdeitem: undefined,
+    descricao: undefined,
+    link: undefined,
   };
-  submitted = false;
-  debug = true;
+
+  item = new Item;
+  imgItemCollection?: ImagemDeItem[];
 
 
-  constructor(private itemService: ItemService) { }
+
+
+  constructor(private itemService: ItemService,
+              private imagemdoItemService: ImagemDeItemService,
+              private route: Router,) { }
 
   ngOnInit(): void {
+    this.retrieveImg();
   }
 
-  saveItem(): void {
-    const data = {
-      item: this.item.item,
-      descricao: this.item.descricao,
-      barras: this.item.barras,
-      quantidadeEstoque: this.item.quantidadeEstoque,
-      preco: this.item.preco,
-      precominimo: this.item.precominimo,
-      referencia: this.item.referencia,
-      marca: this.item.marca,
-      imagensdoitem: this.item.imagensdoitem
-    };
-
-    this.itemService.create(data)
+  retrieveImg(): void {
+    this.imagemdoItemService.getAll()
       .subscribe(
-        response => {
-          if (this.debug) console.log(response);
-          this.submitted = true;
+        data => {
+          this.imgItemCollection = data;
+          console.log(data);
         },
         error => {
           console.log(error);
         });
   }
 
+  saveItem(): void {     
+    this.itemService.create(this.item)
+      .subscribe(
+        response => {
+          if (this.debug) console.log(response);
+         
+        },
+        error => {
+          console.log(error);
+        });
+      this.route.navigate(['/add/image/'+this.item.id]);
+  }
+
+  saveImg(){
+    this.imagemdoItemService.create(this.imgItem)
+    .subscribe(
+      response => {
+        console.log(response);
+        this.item.imagensdoitem = [response];
+      },
+      error => {
+        console.log(error);
+      });
+      this.retrieveImg();
+    }
+
   newItem(): void {
-    this.submitted = false;
+    this.item = new Item;
     this.debug = true;
 
     this.item = {

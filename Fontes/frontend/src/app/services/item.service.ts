@@ -12,6 +12,10 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
+  createImage(id: any, data: any): Observable<any> {
+    return this.http.post(`${baseUrl}/${id}`, data);
+  }
+
   getAll(): Observable<Item[]> {
     return this.http.get<Item[]>(baseUrl);
   }

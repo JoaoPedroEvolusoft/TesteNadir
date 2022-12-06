@@ -13,5 +13,8 @@ module.exports = app => {
     router.delete("/:id", itens.delete); 
     // Create a new Item 
     router.delete("/", itens.deleteAll); 
+    // Create a new image
+    router.post("/:id", itens.createImage);
+
     app.use('/api/itens', router); 
   }; 

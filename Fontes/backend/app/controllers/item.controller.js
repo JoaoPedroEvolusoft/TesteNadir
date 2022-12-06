@@ -1,5 +1,6 @@
 const db = require("../../models");
 const Item = db.itens;
+const Imagensdoitem = db.imagensDeItens;
 
 validaCamposRequeridosItem = (req) => {
     const camposRequeridosEmpty = new Array();
@@ -30,9 +31,9 @@ validaCamposRequeridosItem = (req) => {
     if (!req.body.imagensdoitem) {
         camposRequeridosEmpty.push("imagensdoitem");
     }
-    if (!req.body.fornecedoresdoitem) {
+    /*if (!req.body.fornecedoresdoitem) {
         camposRequeridosEmpty.push("fornecedoresdoitem");
-    }
+    }*/
     return camposRequeridosEmpty;
 }
 
@@ -100,11 +101,6 @@ exports.findAll = (req, res) => {
 
 // Busca a entidade Item por id
 exports.findOne = (req, res) => {
-    // Validate request
-    if (!req.body.id) {
-        res.status(400).send({ message: "Conteúdo não pode ser vazio!" });
-        return;
-    }
 
     const id = req.params.id;
 
@@ -200,4 +196,49 @@ exports.deleteAll = (req, res) => {
             err.message || "Algum erro desconhecido ocorreu ao excluir todas as entidades Item."
         });
       });
+};
+
+exports.createImage = (req, res) => {
+    const id = req.params.id;
+
+    const imagensdoitem = new Imagensdoitem({
+      imagemdeitem: req.body.imagemdeitem ? req.body.imagemdeitem : null,
+      descricao: req.body.descricao ? req.body.descricao : null,
+      link: req.body.link ? req.body.link : null,
+  });
+
+  // Save Item in the database
+  imagensdoitem
+      .save(imagensdoitem)
+      .then(data => {
+          //res.send(data);
+      })
+      .catch(err => {
+          res.status(500).send({
+              message:
+              err.message || "Ocorreu um erro de servidor ao tentar salvar Item."
+          });
+      });
+
+
+   Item
+       .findById(id)
+       .then(data => {
+           if (!data) {
+               res.status(404).send({
+                   message: `A entidade Item com id ${id} não encontrada, por isso não pode ser atualizada!`
+               });
+           } else {
+               const item = data;
+               console.log(imagensdoitem.id)
+                data.imagensdoitem.push(imagensdoitem.id);
+                res.send(data);
+           }
+         })
+       .catch(err => {
+           res.status(500).send({
+               message:
+                   err.message || "Erro desconhecido ocorreu ao alterar a entidade Item com o id " + id + "."
+           });
+       });
 };
