@@ -34,7 +34,8 @@ import { AddParceiroComponent } from './components/add-parceiro/add-parceiro.com
 import { DetailsParceiroComponent } from './components/details-parceiro/details-parceiro.component'; 
 import { ListConfiguracaoBuscaComponent } from './components/list-configuracao-busca/list-configuracao-busca.component';
 import { AddConfiguracaoBuscaComponent } from './components/add-configuracao-busca/add-configuracao-busca.component';
-import { DetailsConfiguracaoBuscaComponent } from './components/details-configuracao-busca/details-configuracao-busca.component'; 
+import { DetailsConfiguracaoBuscaComponent } from './components/details-configuracao-busca/details-configuracao-busca.component';
+import { AddImageComponent } from './components/add-image/add-image.component'; 
 
 
 @NgModule({ 
@@ -49,6 +50,7 @@ DetailsParceiroComponent,
 ListConfiguracaoBuscaComponent,
 AddConfiguracaoBuscaComponent,
 DetailsConfiguracaoBuscaComponent,
+AddImageComponent,
   ],
   imports: [ 
     BrowserModule, 

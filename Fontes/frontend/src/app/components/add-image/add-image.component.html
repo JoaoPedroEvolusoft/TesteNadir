@@ -1,0 +1,34 @@
+<div >
+    <div class="submit-form">
+      <div>
+        <mat-form-field>
+          <input
+          matInput
+          placeholder="Imagem de item"
+            type="text"
+            id="item"
+            required
+            [(ngModel)]="image.imagemdeitem"
+            name="item"
+          />
+        </mat-form-field>
+        <mat-form-field>
+            <input
+            matInput
+            placeholder="Descrição"
+              type="text"
+              id="item"
+              required
+              [(ngModel)]="image.descricao"
+              name="item"
+            />
+          </mat-form-field>
+
+          <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" [(ngModel)]="image.link" id="link" name="link">
+
+        <button (click)="saveImage()" class="btn btn-success">Submit</button>
+  
+      </div>
+    </div>
+  </div>

@@ -1,6 +1,6 @@
 <div>
   <div class="submit-form">
-    <div *ngIf="!submitted">
+    <div>
       <mat-form-field>
         <input
         matInput
@@ -97,19 +97,8 @@
         />
       </mat-form-field>
 
-      <mat-form-field>
-        <input
-        matInput
-        placeholder="Imagens do Item"
-          type="text"
-          id="imagensdoitem"
-          required
-          [(ngModel)]="item.imagensdoitem"
-          name="imagensdoitem"
-        />
-      </mat-form-field>
-
       <button (click)="saveItem()" class="btn btn-success">Submit</button>
+
     </div>
   </div>
 </div>
