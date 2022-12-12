@@ -18,23 +18,41 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <h4>Lista de Itens</h4>
-        <ul class="list-group">
-        <li
-            class="list-group-item"
-            *ngFor="let item of ItemCollection; let i = index"
-            [class.active]="i == currentIndex"
-            (click)="setActiveItem(item, i)"
-        >
-            {{ item.item }} {{ item.descricao }} {{ item.barras }} {{ item.quantidadeEstoque }} {{ item.preco }} {{ item.precominimo }} {{ item.referencia }} {{ item.marca }} {{ item.imagensdoitem }} 
-        </li>
-        </ul>
 
-        <button class="m-3 btn btn-sm btn-danger" (click)="removeAllItens()">
-        Remover Tudo
-        </button>
+<div class="col-md-6">
+        <h4>Lista de Itens</h4>
+    <div *ngFor="let item of ItemCollection; let i = index">
+        <mat-card 
+        [class.active]="i == currentIndex"
+        class="listitem">
+            <mat-card-title>{{item.item}} <div class="dots"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="setActiveItem(item, i)">
+                <mat-icon>visibility</mat-icon>
+                <span>Detalhes</span>
+              </button>
+              <button mat-menu-item routerLink="/add/image/{{ item.id }}">
+                <mat-icon>image</mat-icon>
+                <span>Imagens</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>delete_forever</mat-icon>
+                <span>Deletar</span>
+              </button>
+            </mat-menu></div> </mat-card-title>
+            <mat-card-subtitle>{{ item.barras }}</mat-card-subtitle>
+            <mat-card-content>
+                {{item.descricao}}
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+          </mat-card>
+          <br>
     </div>
+    </div>
+
     <div class="col-md-6">
         <div *ngIf="currentItem.id">
         <h4>Item</h4>

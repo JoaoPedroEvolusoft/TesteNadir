@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ImagemDeItem } from 'src/app/models/imagem-de-item.model';
 import { Item } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
@@ -16,7 +16,8 @@ export class AddImageComponent implements OnInit {
   srcResult: any;
 
   constructor(private itemService: ItemService,
-              private route: ActivatedRoute,) { }
+              private route: ActivatedRoute,
+              private router: Router,) { }
 
   ngOnInit(): void {
     this.getItem(this.route.snapshot.params['id']);
@@ -35,7 +36,7 @@ export class AddImageComponent implements OnInit {
   }
 
   saveImage(): void {
-    const data = {
+    let data = {
       descricao: this.image.descricao,
       link: this.image.link,
     };
@@ -43,12 +44,21 @@ export class AddImageComponent implements OnInit {
     this.itemService.createImage(this.item.id, data)
       .subscribe(
         response => {
+          let newItem = response;
+          this.itemService.update(this.item.id, newItem).subscribe(
+            response => {
+              console.log(response);
+              this.item = response;
+            },
+            error => {
+              console.log(error);
+            });
           console.log(response);
         },
         error => {
           console.log(error);
         });
-    console.log(data);
+    this.router.navigate(['/itens']);
   }
 
   onFileSelected() {
