@@ -24,6 +24,10 @@
             />
           </mat-form-field>
 
+        <form enctype="multipart/form-data">
+          <input type="file" id="file" required [(ngModel)]="file" name="file" />
+        </form>
+
           <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
             <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" [(ngModel)]="image.link" id="link" name="link">
 

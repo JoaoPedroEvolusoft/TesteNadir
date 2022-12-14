@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors"); 
 const app = express();
+const multer = require('multer');
+const path = require('path');
 
 var corsOptions = { 
   origin: "http://localhost:8081" 
@@ -13,6 +15,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://admin:admin@cluster0.a3mav.mongodb.net/curso-javascript?retryWrites=true&w=majority');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    console.log(file);
+      cb('Erro path', path.join(__dirname, '../uploads/'));
+  },
+  filename: (req, file, cb) => {
+    console.log('file: ', file.originalname)
+      cb('Erro nome', file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/upload", upload.single("file"), (req, res) => {
+  console.log('file: ', req.file);
+  res.status(200).json("File has been uploaded");
+});
 
         //mongodb+srv://jvpiloni:Pl1oIS0yn5GpERtj@cluster0.cgvp8s3.mongodb.net/?retryWrites=true&w=majority'
 
@@ -38,6 +58,9 @@ require("./routes/configuracaoBusca.routes")(app);
 
 //Declara Variavel rotas
 require("./routes/variavel.routes")(app); 
+
+//Declara imagens rotas
+require("./routes/image.routes.js")(app); 
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
