@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImagemDeItem } from 'src/app/models/imagem-de-item.model';
 import { Item } from 'src/app/models/item.model';
@@ -15,6 +15,8 @@ export class AddImageComponent implements OnInit {
   item = new Item;
   image = new ImagemDeItem;
   file: any;
+  @ViewChild('fileInput', {static: false}) fileInput!: ElementRef;
+  id = '';
 
   constructor(private itemService: ItemService,
               private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class AddImageComponent implements OnInit {
     this.itemService.get(id)
       .subscribe(
         data => {
+          this.id = id;
           this.item = data;
           console.log(data);
         },
@@ -38,10 +41,11 @@ export class AddImageComponent implements OnInit {
   }
 
   saveImage(): void {
-    const formData = new FormData();
-    formData.append('file', this.file);
+    const imageBlob = this.fileInput.nativeElement.files[0];
+    const file = new FormData();
+    file.set('file', imageBlob);
 
-    this.imageService.upload(formData).subscribe(
+    this.imageService.upload(file, this.id).subscribe(
       response => {
         console.log(response);
       },
