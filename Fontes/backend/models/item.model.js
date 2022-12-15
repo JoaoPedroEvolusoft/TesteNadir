@@ -13,6 +13,7 @@ module.exports = mongoose => {
       referencia: String,
       marca: String,
       imagensdoitem: String,
+      imagensdoitem2: String,
         fornecedoresdoitem: [ 
           [{type: Schema.Types.ObjectId, ref: 'FornecedorDeItem'}] 
         ], 
