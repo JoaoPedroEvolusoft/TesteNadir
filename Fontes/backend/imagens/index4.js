@@ -1,10 +1,10 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-
+const codigo = '62516223';
 (async () => {
   const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
-  await page.goto('https://www.google.com/search?q=62516223&sxsrf=ALiCzsaiA5NTzQRMW6cXOqfPuD-Zs8oQ7Q:1671120507912&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiizICCgfz7AhVGuJUCHTP7CG0Q_AUoA3oECAEQBQ&cshid=1671120625743306&biw=875&bih=624&dpr=1');
+  await page.goto('https://www.google.com/search?q='+codigo+'&sxsrf=ALiCzsaiA5NTzQRMW6cXOqfPuD-Zs8oQ7Q:1671120507912&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiizICCgfz7AhVGuJUCHTP7CG0Q_AUoA3oECAEQBQ&cshid=1671120625743306&biw=875&bih=624&dpr=1');
 //   await page.screenshot({path: 'example.png'});
 
 
