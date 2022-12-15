@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/models/item.model';
+import { ImageService } from 'src/app/services/image.service';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -14,8 +15,10 @@ export class ListItemComponent implements OnInit {
   currentIndex = -1;
   debug = true;
   descricao = '';
+  base64Data: any;
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService,
+              private imageService: ImageService) { }
 
   ngOnInit(): void {
     this.retrieveItens();
@@ -42,6 +45,7 @@ export class ListItemComponent implements OnInit {
   setActiveItem(item: Item, index: number): void {
     this.currentItem = item;
     this.currentIndex = index;
+    this.imageRetriever();
   }
 
   removeAllItens(): void {
@@ -69,5 +73,16 @@ export class ListItemComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  imageRetriever() {
+    console.log(this.currentItem.imagensdoitem);
+    this.imageService.getById(this.currentItem.imagensdoitem)
+    .subscribe(
+      data => {
+        if (this.debug) console.log(data);
+        this.base64Data = data;
+      }
+    )
   }
 }

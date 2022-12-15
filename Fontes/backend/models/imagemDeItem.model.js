@@ -4,9 +4,12 @@ var Schema = mongoose.Schema;
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      imagemdeitem: Number,
-      descricao: String,
-      link: String
+      nome: Number,
+      descicao: String,
+      img: {
+        data: Buffer,
+        contentType: String,
+      },
     },
     { timestamps: true }
   );
