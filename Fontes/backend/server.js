@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors"); 
 const app = express();
+const multer = require('multer');
+const path = require('path');
 
 var corsOptions = { 
   origin: "http://localhost:8081" 
@@ -38,6 +40,9 @@ require("./routes/configuracaoBusca.routes")(app);
 
 //Declara Variavel rotas
 require("./routes/variavel.routes")(app); 
+
+//Declara imagens rotas
+require("./routes/image.routes.js")(app); 
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

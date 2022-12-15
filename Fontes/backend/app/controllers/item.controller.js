@@ -229,7 +229,7 @@ exports.createImage = (req, res) => {
                    message: `A entidade Item com id ${id} não encontrada, por isso não pode ser atualizada!`
                });
            } else {
-                data.imagensdoitem[0].push(imagensdoitem.id);
+                data.imagensdoitem.push(imagensdoitem.id);
                 res.send(data);
            }
          })
