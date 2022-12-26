@@ -5,12 +5,16 @@ const fs = require('fs');
 
 const multer = require('multer');
 
+var filename = '';
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(__dirname, `../../uploads/${req.params.id}`));
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
+        filename = file.originalname;
+        console.log('filename: ' + filename)
     }
 });
 
@@ -25,21 +29,20 @@ exports.upload = async (req, res) => {
     }
 
     const upload = multer({ storage: storage }).single('file');
-    upload(req, res, err => {
+    await upload(req, res, err => {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
         //res.json({ file: req.file });
     });
 
-   // console.log(req.file.filename);/*
 
     const saveImage = new ImagemDeItem({
         nome: req.body.nome,
         descricao: req.body.descricao, 
         img: {
             //error: "Cannot read property 'filename' of undefined"
-            data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${req.file.filename}`)),
+            data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${filename}`)),
             contentType: "image/png",
         }
     });
