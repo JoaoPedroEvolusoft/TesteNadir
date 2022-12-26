@@ -1,6 +1,11 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+
+
+
+
 const codigo = '62516223';
+
 (async () => {
   const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
@@ -17,7 +22,7 @@ const codigo = '62516223';
  const imgList= await page.evaluate(() => {
 // toda essa funçao sera executada no browser
 //vamos pegar todas as imagens q estao na parte de postes
-        const nodeList = document.querySelectorAll('.islrc img')
+        const nodeList = document.querySelectorAll('.islrc  .bRMDJf img')
 //transformar o nodeList em array
         const imgArray = [...nodeList]
 //transformar os nodes (elements html) em objetos js
