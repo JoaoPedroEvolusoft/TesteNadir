@@ -4,7 +4,6 @@ const path = require('path');
 const fs = require('fs');
 
 const multer = require('multer');
-const filename = "";
 
 var filename = '';
 
@@ -43,11 +42,7 @@ exports.upload = async (req, res) => {
         descricao: req.body.descricao, 
         img: {
             //error: "Cannot read property 'filename' of undefined"
-<<<<<<< HEAD
-            data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${req.body.nome}`)),
-=======
             data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${filename}`)),
->>>>>>> 2d0c46bdfea605d6630520648171d4ec0a81c878
             contentType: "image/png",
         }
     });
