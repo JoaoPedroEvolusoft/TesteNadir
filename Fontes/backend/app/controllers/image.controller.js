@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 const multer = require('multer');
+const filename = "";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -39,7 +40,7 @@ exports.upload = async (req, res) => {
         descricao: req.body.descricao, 
         img: {
             //error: "Cannot read property 'filename' of undefined"
-            data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${req.file.filename}`)),
+            data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${req.body.nome}`)),
             contentType: "image/png",
         }
     });
