@@ -10,6 +10,7 @@ import { ListConfiguracaoBuscaComponent } from './components/list-configuracao-b
 import { AddConfiguracaoBuscaComponent } from './components/add-configuracao-busca/add-configuracao-busca.component';
 import { DetailsConfiguracaoBuscaComponent } from './components/details-configuracao-busca/details-configuracao-busca.component'; 
 import { AddImageComponent } from './components/add-image/add-image.component';
+import { ListImageComponent } from './components/list-image/list-image.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'configuracoesBuscas/:id', component: DetailsConfiguracaoBuscaComponent }, 
   { path: 'add/configuracaoBusca', component: AddConfiguracaoBuscaComponent }, 
   { path: 'add/image/:id', component: AddImageComponent }, 
+  { path: 'image/:id', component: ListImageComponent },
 
 
 
