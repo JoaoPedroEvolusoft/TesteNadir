@@ -1,6 +1,8 @@
 module.exports = app => {
+    const multer = require('multer');
     const image = require("../app/controllers/image.controller.js"); 
     var router = require("express").Router(); 
+
     router.post("/:id", image.upload); 
 
     router.get("/", image.findAll);

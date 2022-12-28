@@ -85,4 +85,16 @@ export class ListItemComponent implements OnInit {
       }
     )
   }
+
+  deleteItem(item: Item): void {
+    this.itemService.delete(item.id)
+      .subscribe(
+        response => {
+          if (this.debug) console.log(response);
+          this.refreshList();
+        },
+        error => {
+          console.log(error);
+        });
+  }
 }

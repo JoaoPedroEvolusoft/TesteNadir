@@ -131,12 +131,6 @@ exports.update = (req, res) => {
 
 // Remove a entidade ImagemDeItem por id
 exports.delete = (req, res) => {
-    // Validate request
-    if (!req.body.id) {
-        res.status(400).send({ message: "Conteúdo não pode ser vazio!" });
-        return;
-    }
-
     const id = req.params.id;
 
     ImagemDeItem.findByIdAndRemove(id)

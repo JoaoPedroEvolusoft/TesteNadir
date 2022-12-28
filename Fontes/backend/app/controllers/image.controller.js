@@ -14,20 +14,16 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, file.originalname);
         filename = file.originalname;
-        console.log('filename: ' + filename)
     }
 });
 
 exports.upload = async (req, res) => {
     const id = req.params.id;
 
-    if(fs.existsSync(path.join(__dirname, `../../uploads/${id}`))) {
-        console.log('Diretório já existe');
-    } else {
+    if(!fs.existsSync(path.join(__dirname, `../../uploads/${id}`))) {
         fs.mkdirSync(path.join(__dirname, `../../uploads/${id}`));
-        console.log('Diretório criado');
     }
-
+    
     const upload = multer({ storage: storage }).single('file');
     await upload(req, res, err => {
         if (err) {
@@ -36,8 +32,7 @@ exports.upload = async (req, res) => {
         //res.json({ file: req.file });
     });
 
-
-    const saveImage = new ImagemDeItem({
+    const newImage = new ImagemDeItem({
         nome: req.body.nome,
         descricao: req.body.descricao, 
         img: {
@@ -46,7 +41,7 @@ exports.upload = async (req, res) => {
             contentType: "image/png",
         }
     });
-    saveImage.save()
+    newImage.save()
         .then(data => {
             res.send(data);
         })
@@ -55,7 +50,9 @@ exports.upload = async (req, res) => {
                 message: err.message || "Algum erro ocorreu ao salvar a imagem."
             });
         });
+
 }
+
 
 exports.findAll = async (req, res) => {
     const allData = await ImagemDeItem.find();
