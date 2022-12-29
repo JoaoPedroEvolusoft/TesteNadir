@@ -15,6 +15,8 @@ export class ImageService {
     return this.http.post(`${baseUrl}/${id}`, data);
   }
 
+  
+
   getById(id: any): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }

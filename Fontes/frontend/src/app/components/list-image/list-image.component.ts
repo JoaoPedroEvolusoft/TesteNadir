@@ -11,15 +11,25 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ListImageComponent implements OnInit {
   imageUrl: any;
   id = 1;
+  listImage: any[] = [];
+  listImageId: any[] = [];
 
   constructor(private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private imageService: ImageService) { }
 
   ngOnInit(): void {
-    this.imageService.getById(this.route.snapshot.params['id']).subscribe((data: any) => {
-      console.log(data.img.data);
+    /*this.imageService.getById(this.route.snapshot.params['id']).subscribe((data: any) => {
       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + data.img.data);
+    });*/
+    this.imageService.getAll().subscribe((data: any) => {
+      this.listImage = data;
+      console.log(this.listImage);
+      this.listImage.forEach((image: any) => {
+        this.imageUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + image.img.data);
+        this.listImageId.push(this.imageUrl);
+        console.log(this.listImageId)
+      });
     });
   }
 }

@@ -52,30 +52,6 @@ export class AddImageComponent implements OnInit {
       error => {
         console.log(error);
       });
-
-    /*let data = {
-      descricao: this.image.descricao,
-      link: this.image.link,
-    };
-
-    this.itemService.createImage(this.item.id, data)
-      .subscribe(
-        response => {
-          let newItem = response;
-          this.itemService.update(this.item.id, newItem).subscribe(
-            response => {
-              console.log(response);
-              this.item = response;
-            },
-            error => {
-              console.log(error);
-            });
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
-    this.router.navigate(['/itens']);*/
   }
 
   onFileSelected() {

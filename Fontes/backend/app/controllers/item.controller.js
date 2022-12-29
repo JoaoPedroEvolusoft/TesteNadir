@@ -28,9 +28,6 @@ validaCamposRequeridosItem = (req) => {
     if (!req.body.marca) {
         camposRequeridosEmpty.push("marca");
     }
-    if (!req.body.imagensdoitem) {
-        camposRequeridosEmpty.push("imagensdoitem");
-    }
     /*if (!req.body.fornecedoresdoitem) {
         camposRequeridosEmpty.push("fornecedoresdoitem");
     }*/

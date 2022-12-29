@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     }
 });
 
-exports.upload = async (req, res) => {
+function upload(req, res){
     const id = req.params.id;
 
     if(!fs.existsSync(path.join(__dirname, `../../uploads/${id}`))) {
@@ -25,18 +25,22 @@ exports.upload = async (req, res) => {
     }
     
     const upload = multer({ storage: storage }).single('file');
-    await upload(req, res, err => {
+    upload(req, res, err => {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
         //res.json({ file: req.file });
     });
+}
+
+exports.save = async (req, res) => {
+    await upload(req, res);
+    const id = req.params.id;
 
     const newImage = new ImagemDeItem({
         nome: req.body.nome,
         descricao: req.body.descricao, 
         img: {
-            //error: "Cannot read property 'filename' of undefined"
             data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${filename}`)),
             contentType: "image/png",
         }
@@ -50,8 +54,8 @@ exports.upload = async (req, res) => {
                 message: err.message || "Algum erro ocorreu ao salvar a imagem."
             });
         });
+};
 
-}
 
 
 exports.findAll = async (req, res) => {

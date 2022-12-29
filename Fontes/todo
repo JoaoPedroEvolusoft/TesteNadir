@@ -2,3 +2,5 @@
 [] Dar um jeito para mostrar imagem em vez do link
 [] Conseguir de alguma forma pegar o input da imagem
 [] Chamar as imagens do banco de dados
+[] Quando excluir um item excluir a pasta de imagens do mesmo.
+[] Fazer a função esperar criar a imagem para salvar no banco de dados.

@@ -1,1 +1,3 @@
-<img [src]="imageUrl" alt="Imagem">
+<div *ngFor="let images of listImageId">
+    <img [src]="images" alt="Imagem">
+</div>
