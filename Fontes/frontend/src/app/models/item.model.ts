@@ -3,7 +3,7 @@ import { FornecedorDeItem } from "./fornecedor-de-item.model";
 
 export class Item {
     id?: any;
-    item?: number;
+    item?: string;
     descricao?: string;
     barras?: string;
     quantidadeEstoque?: number;
@@ -11,7 +11,7 @@ export class Item {
     precominimo?: number;
     referencia?: string;
     marca?: string;
-    imagensdoitem?: ImagemDeItem[];
+    imagensdoitem?: String[];
     fornecedoresdoitem?: FornecedorDeItem[];
 }
 

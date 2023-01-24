@@ -40,8 +40,9 @@ exports.create = (req, res) => {
     const configuracaoBusca = new ConfiguracaoBusca({
         codigo: req.body.codigo ? req.body.codigo : null,
         descricao: req.body.descricao ? req.body.descricao : null,
-        parceiro: req.body.parceiro ? req.body.parceiro.id : null,
+        parceiro: req.body.parceiro ? req.body.parceiro: null,
         urlbusca: req.body.urlbusca ? req.body.urlbusca : null,
+        variaveis: req.body.variaveis ? req.body.urlbusca : null,
     });
 
     // Save ConfiguracaoBusca in the database

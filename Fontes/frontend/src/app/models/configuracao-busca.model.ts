@@ -5,8 +5,8 @@ export class ConfiguracaoBusca {
     id?: any;
     codigo?: number;
     descricao?: string;
-    parceiro?: Parceiro;
+    parceiro?: string;
     urlbusca?: string;
-    variaveis?: Variavel[];
+    variaveis?: string;
 }
 

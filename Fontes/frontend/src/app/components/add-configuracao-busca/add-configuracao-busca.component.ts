@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfiguracaoBusca } from 'src/app/models/configuracao-busca.model';
 import { ConfiguracaoBuscaService } from 'src/app/services/configuracao-busca.service';
+import {MatMenuModule} from '@angular/material/menu';
+import { Parceiro } from 'src/app/models/parceiro.model';
+
 
 @Component({
   selector: 'app-add-configuracao-busca',
@@ -13,12 +16,14 @@ export class AddConfiguracaoBuscaComponent implements OnInit {
     codigo: 0,
     descricao: '',
     urlbusca: '',
+    parceiro:'',
+    variaveis:'',
   };
   submitted = false;
   debug = true;
 
 
-  constructor(private configuracaoBuscaService: ConfiguracaoBuscaService) { }
+  constructor(private configuracaoBuscaService: ConfiguracaoBuscaService,) { }
 
   ngOnInit(): void {
   }
@@ -51,6 +56,8 @@ export class AddConfiguracaoBuscaComponent implements OnInit {
       codigo: 0,
       descricao: '',
       urlbusca: '',
+      parceiro: '',
+      variaveis:'',
     };
   }
 }

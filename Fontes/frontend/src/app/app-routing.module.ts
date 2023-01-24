@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'add/parceiro', component: AddParceiroComponent }, 
   { path: 'configuracoesBuscas', component: ListConfiguracaoBuscaComponent },
   { path: 'configuracoesBuscas/:id', component: DetailsConfiguracaoBuscaComponent }, 
-  { path: 'add/configuracaoBusca', component: AddConfiguracaoBuscaComponent }, 
+  { path: 'add/configuracaoBuscas', component: AddConfiguracaoBuscaComponent }, 
   { path: 'add/image/:id', component: AddImageComponent }, 
   { path: 'image/:id', component: ListImageComponent },
 

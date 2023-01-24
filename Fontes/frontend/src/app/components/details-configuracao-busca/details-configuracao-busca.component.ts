@@ -55,12 +55,12 @@ export class DetailsConfiguracaoBuscaComponent implements OnInit {
         });
   }
 
-  deleteConfiguracaoBusca(): void {
-    this.configuracaoBuscaService.delete(this.configuracaoBusca.id)
+  deleteConfiguracaoBusca(configuracaoBusca: ConfiguracaoBusca): void {
+    this.configuracaoBuscaService.delete(configuracaoBusca.id)
       .subscribe(
         response => {
           if (this.debug) console.log(response);
-          this.router.navigate(['/configuracoes-buscas']);
+          this.router.navigate(['/configuracoesBuscas']);
         },
         error => {
           console.log(error);

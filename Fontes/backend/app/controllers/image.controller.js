@@ -42,7 +42,7 @@ exports.save = async (req, res) => {
         descricao: req.body.descricao, 
         img: {
             data: fs.readFileSync(path.join(__dirname, `../../uploads/${id}/${filename}`)),
-            contentType: "image/png",
+            contentType: "image/jpg",
         }
     });
     newImage.save()

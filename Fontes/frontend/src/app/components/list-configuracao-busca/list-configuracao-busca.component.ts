@@ -8,7 +8,6 @@ import { ConfiguracaoBuscaService } from 'src/app/services/configuracao-busca.se
   styleUrls: ['./list-configuracao-busca.component.css']
 })
 export class ListConfiguracaoBuscaComponent implements OnInit {
-
   ConfiguracaoBuscaCollection?: ConfiguracaoBusca[];
   currentConfiguracaoBusca: ConfiguracaoBusca = {};
   currentIndex = -1;

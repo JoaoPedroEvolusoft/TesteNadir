@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"); 
 mongoose.Promise = global.Promise; 
 const db = {}; 
-db.mongoose = mongoose; 
+db.mongoose = mongoose;
 
 //Declara Item
 db.itens = require("./item.model.js")(mongoose); 

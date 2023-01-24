@@ -96,6 +96,20 @@ exports.findAll = (req, res) => {
       });
 };
 
+//Retorna os dados dos itens
+exports.findAllInternal = () => {
+  // var condition = {};
+  Item.find({})
+  .then(data => {
+      console.log("teste");
+      console.log(data);
+      return data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
 // Busca a entidade Item por id
 exports.findOne = (req, res) => {
 

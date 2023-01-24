@@ -6,11 +6,9 @@ module.exports = mongoose => {
     {
       codigo: Number,
       descricao: String,
-        parceiro: {type: Schema.Types.ObjectId, ref: 'Parceiro'}, 
+      parceiro: String, 
       urlbusca: String,
-        variaveis: [ 
-          [{type: Schema.Types.ObjectId, ref: 'Variavel'}] 
-        ], 
+      variaveis: String,
     },
     { timestamps: true }
   );

@@ -1,3 +1,4 @@
-<div *ngFor="let images of listImageId">
-    <img [src]="images" alt="Imagem">
+<div *ngFor="let images of item.imagensdoitem">
+    <img [src]="images" alt="Imagem" max-width="300" onerror="this.style.display='none'">
 </div>
+<div><button class="btn btn-success">Submit</button></div>

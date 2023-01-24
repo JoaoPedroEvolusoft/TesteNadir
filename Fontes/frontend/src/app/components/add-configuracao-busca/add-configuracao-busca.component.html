@@ -40,6 +40,18 @@
       <mat-form-field>
         <input
         matInput
+        placeholder="Parceiro"
+          type="text"
+          id="parceiros"
+          required
+          [(ngModel)]="configuracaoBusca.parceiro"
+          name="parceiros"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
         placeholder="Variaveis"
           type="text"
           id="variaveis"

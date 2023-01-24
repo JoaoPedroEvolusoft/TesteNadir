@@ -11,7 +11,7 @@ import { Item } from 'src/app/models/item.model';
 export class DetailsItemComponent implements OnInit {
 
   item: Item = {
-    item: 0,
+    item: '',
     descricao: '',
     barras: '',
     quantidadeEstoque: 0,

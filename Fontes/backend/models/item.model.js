@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      item: Number,
+      item: String,
       descricao: String,
       barras: String,
       quantidadeEstoque: Number,
@@ -12,9 +12,7 @@ module.exports = mongoose => {
       precominimo: Number,
       referencia: String,
       marca: String,
-        imagensdoitem: [ 
-          [{type: Schema.Types.ObjectId, ref: 'ImagemDeItem'}] 
-        ], 
+      imagensdoitem: [String], 
         fornecedoresdoitem: [ 
           [{type: Schema.Types.ObjectId, ref: 'FornecedorDeItem'}] 
         ], 

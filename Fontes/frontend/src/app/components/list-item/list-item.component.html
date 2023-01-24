@@ -25,7 +25,7 @@
         <mat-card 
         [class.active]="i == currentIndex"
         class="listitem">
-            <mat-card-title>{{item.item}} <div class="dots"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-card-title>{{item.descricao}} <div class="dots"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -33,18 +33,22 @@
                 <mat-icon>visibility</mat-icon>
                 <span>Detalhes</span>
               </button>
+              <button mat-menu-item routerLink="/image/{{ item.id }}">
+                <mat-icon>image</mat-icon>
+                <span>Imagem</span>
+              </button>
               <button mat-menu-item routerLink="/add/image/{{ item.id }}">
                 <mat-icon>image</mat-icon>
-                <span>Imagens</span>
+                <span>Adicionar Imagem</span>
               </button>
               <button mat-menu-item (click)="deleteItem(item)">
                 <mat-icon>delete_forever</mat-icon>
                 <span>Deletar</span>
               </button>
             </mat-menu></div> </mat-card-title>
-            <mat-card-subtitle>{{ item.barras }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ item.item }}</mat-card-subtitle>
             <mat-card-content>
-                {{item.descricao}}
+                {{item.barras}}
             </mat-card-content>
             <mat-card-actions>
             </mat-card-actions>
@@ -81,7 +85,7 @@
             <label><strong>Marca:</strong></label> {{ currentItem.marca }}
         </div>
         <div>
-            <label><strong>Imagensdoitem:</strong></label> <img src="data:image/png;base64,{{base64Data}}" width="300"/>
+            <label><strong>Imagensdoitem:</strong></label> <img src="{{currentItem.imagensdoitem}}" width="300"/>
         </div>
         <div>
             <label><strong>Fornecedoresdoitem:</strong></label> {{ currentItem.fornecedoresdoitem }}
