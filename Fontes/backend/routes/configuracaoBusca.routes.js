@@ -1,5 +1,6 @@
 module.exports = app => {
     const configuracoesBuscas = require("../app/controllers/configuracaoBusca.controller.js"); 
+    const buscaPuppeteer = require("../app/controllers/buscaPuppeteer.controller");
     var router = require("express").Router(); 
     // Create a new ConfiguracaoBusca 
     router.post("/", configuracoesBuscas.create); 
@@ -13,5 +14,10 @@ module.exports = app => {
     router.delete("/:id", configuracoesBuscas.delete); 
     // Create a new ConfiguracaoBusca 
     router.delete("/", configuracoesBuscas.deleteAll); 
+    // puppetear buscas
+    router.post("/puppeteer", buscaPuppeteer.start);
+
+    //puppeteer buscas com itens
+    router.post("/puppeteer/a", buscaPuppeteer.start2);
     app.use('/api/configuracoesBuscas', router); 
   }; 

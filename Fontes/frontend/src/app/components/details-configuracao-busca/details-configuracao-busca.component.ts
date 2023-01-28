@@ -15,6 +15,11 @@ export class DetailsConfiguracaoBuscaComponent implements OnInit {
     descricao: '',
     urlbusca: '',
   };
+
+  variavel1='';
+  variavel2='';
+  variavel3='';
+
   message = '';
   debug = true;
 
@@ -43,7 +48,10 @@ export class DetailsConfiguracaoBuscaComponent implements OnInit {
 
   updateConfiguracaoBusca(): void {
     this.message = '';
-
+    this.configuracaoBusca.variaveis=[];
+    this.configuracaoBusca.variaveis?.push(this.variavel1);
+    this.configuracaoBusca.variaveis?.push(this.variavel2);
+    this.configuracaoBusca.variaveis?.push(this.variavel3);
     this.configuracaoBuscaService.update(this.configuracaoBusca.id, this.configuracaoBusca)
       .subscribe(
         response => {

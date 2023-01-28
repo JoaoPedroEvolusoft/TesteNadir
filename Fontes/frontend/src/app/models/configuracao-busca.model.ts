@@ -7,6 +7,7 @@ export class ConfiguracaoBusca {
     descricao?: string;
     parceiro?: string;
     urlbusca?: string;
-    variaveis?: string;
+    variaveis?: string[];
+    caminhoImagem?: string;
 }
 

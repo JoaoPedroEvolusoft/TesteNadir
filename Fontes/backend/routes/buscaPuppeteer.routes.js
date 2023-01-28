@@ -3,7 +3,7 @@ module.exports = app => {
     var router = require("express").Router();
      
     // Create a new BuscaPuppeteer 
-    router.post("/", buscaPuppeteer.create); 
+    router.post("/", buscaPuppeteer.start); 
 
     app.use('/api/buscaPuppeteer', router); 
   }; 

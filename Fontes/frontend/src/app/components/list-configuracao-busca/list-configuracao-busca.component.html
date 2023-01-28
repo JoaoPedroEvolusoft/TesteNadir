@@ -53,10 +53,13 @@
         <div>
             <label><strong>Variaveis:</strong></label> {{ currentConfiguracaoBusca.variaveis }}
         </div>
-
+        <div>
+            <label><strong>Caminho Imagem:</strong></label> {{ currentConfiguracaoBusca.caminhoImagem }}
+        </div>
         <a class="badge badge-warning" routerLink="/configuracoesBuscas/{{ currentConfiguracaoBusca.id }}">
             Editar
         </a>
+        <button class="badge badge-warning" (click)="realizarBusca()">BuscarPuppetear</button>
         </div>
 
         <div *ngIf="!currentConfiguracaoBusca">

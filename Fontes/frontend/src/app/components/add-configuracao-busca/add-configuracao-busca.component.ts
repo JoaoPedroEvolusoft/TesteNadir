@@ -12,16 +12,19 @@ import { Parceiro } from 'src/app/models/parceiro.model';
 })
 export class AddConfiguracaoBuscaComponent implements OnInit {
 
+  variavel1="";
+  variavel2="";
+  variavel3="";
   configuracaoBusca: ConfiguracaoBusca = {
     codigo: 0,
     descricao: '',
     urlbusca: '',
     parceiro:'',
-    variaveis:'',
+    variaveis:[],
+    caminhoImagem: '',
   };
   submitted = false;
   debug = true;
-
 
   constructor(private configuracaoBuscaService: ConfiguracaoBuscaService,) { }
 
@@ -29,13 +32,16 @@ export class AddConfiguracaoBuscaComponent implements OnInit {
   }
 
   saveConfiguracaoBusca(): void {
+
     const data = {
       codigo: this.configuracaoBusca.codigo,
       descricao: this.configuracaoBusca.descricao,
       parceiro: this.configuracaoBusca.parceiro,
       urlbusca: this.configuracaoBusca.urlbusca,
-      variaveis: this.configuracaoBusca.variaveis
+      variaveis: [this.variavel1,this.variavel2,this.variavel3],
+      caminhoImagem: this.configuracaoBusca.caminhoImagem,
     };
+
 
     this.configuracaoBuscaService.create(data)
       .subscribe(
@@ -57,7 +63,8 @@ export class AddConfiguracaoBuscaComponent implements OnInit {
       descricao: '',
       urlbusca: '',
       parceiro: '',
-      variaveis:'',
+      variaveis:[],
+      caminhoImagem: '',
     };
   }
 }

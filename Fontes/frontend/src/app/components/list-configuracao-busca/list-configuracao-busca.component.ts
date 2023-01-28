@@ -13,7 +13,7 @@ export class ListConfiguracaoBuscaComponent implements OnInit {
   currentIndex = -1;
   debug = true;
   descricao = '';
-
+  message='';
   constructor(private configuracaoBuscaService: ConfiguracaoBuscaService) { }
 
   ngOnInit(): void {
@@ -69,4 +69,31 @@ export class ListConfiguracaoBuscaComponent implements OnInit {
           console.log(error);
         });
   }
+  realizarBusca(): void{
+    this.configuracaoBuscaService.start(this.currentConfiguracaoBusca)
+    .subscribe(
+      (response) => {
+              if (this.debug) console.log(response);
+              this.message = response.message
+                ? response.message
+                : 'Deu Certo!';
+            },
+            (error) => {
+              console.log(error);
+            });
+  }
+
+  // realizarBusca(): void{
+  //   this.buscaPuppeteer.start().subscribe(
+  //     (response) => {
+  //       if (this.debug) console.log(response);
+  //       this.message = response.message
+  //         ? response.message
+  //         : 'Deu Certo!';
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
 }

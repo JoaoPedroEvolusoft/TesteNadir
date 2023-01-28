@@ -28,9 +28,9 @@ validaCamposRequeridosItem = (req) => {
     if (!req.body.marca) {
         camposRequeridosEmpty.push("marca");
     }
-    /*if (!req.body.fornecedoresdoitem) {
+    if (!req.body.fornecedoresdoitem) {
         camposRequeridosEmpty.push("fornecedoresdoitem");
-    }*/
+    }
     return camposRequeridosEmpty;
 }
 
@@ -59,6 +59,7 @@ exports.create = (req, res) => {
         precominimo: req.body.precominimo ? req.body.precominimo : null,
         referencia: req.body.referencia ? req.body.referencia : null,
         marca: req.body.marca ? req.body.marca : null,
+        fornecedoresdoitem: req.body.fornecedoresdoitem ? req.body.fornecedoresdoitem : null,
     });
 
     // Save Item in the database
@@ -80,8 +81,12 @@ exports.findAll = (req, res) => {
     var condition = {};
 
     const descricao = req.query.descricao;
+    const fornecedoresdoitem = req.query.fornecedoresdoitem;
     if (descricao) {
         condition.descricao = { $regex: new RegExp(descricao), $options: "i" };
+    }
+    if (fornecedoresdoitem){
+      condition.fornecedoresdoitem= { $regex: new RegExp(fornecedoresdoitem), $options: "i" };
     }
 
     Item.find(condition)

@@ -19,6 +19,7 @@ export class DetailsItemComponent implements OnInit {
     precominimo: 0,
     referencia: '',
     marca: '',
+    fornecedoresdoitem:'',
   };
   message = '';
   debug = true;

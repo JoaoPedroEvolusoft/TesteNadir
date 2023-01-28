@@ -12,6 +12,6 @@ export class Item {
     referencia?: string;
     marca?: string;
     imagensdoitem?: String[];
-    fornecedoresdoitem?: FornecedorDeItem[];
+    fornecedoresdoitem?: string;
 }
 

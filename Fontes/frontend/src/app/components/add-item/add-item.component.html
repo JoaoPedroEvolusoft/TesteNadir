@@ -85,6 +85,8 @@
         />
       </mat-form-field>
 
+
+
       <mat-form-field>
         <input
         matInput
@@ -97,6 +99,17 @@
         />
       </mat-form-field>
 
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Fornecedor"
+          type="text"
+          id="fornecedor"
+          required
+          [(ngModel)]="item.fornecedoresdoitem"
+          name="fornecedor"
+        />
+      </mat-form-field>
       <button (click)="saveItem()" class="btn btn-success">Submit</button>
 
     </div>

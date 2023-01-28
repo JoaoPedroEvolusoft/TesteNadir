@@ -19,6 +19,25 @@
         </div>
     </div>
 
+    <div class="col-md-8">
+        <div class="input-group mb-3">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Procurar por Fornecedor"
+                [(ngModel)]="fornecedor"
+            />
+            <div class="input-group-append">
+                <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    (click)="searchFornecedor()"
+                >
+                    Procurar
+                </button>
+            </div>
+        </div>
+    </div>
 <div class="col-md-6">
         <h4>Lista de Itens</h4>
     <div *ngFor="let item of ItemCollection; let i = index">
@@ -46,7 +65,7 @@
                 <span>Deletar</span>
               </button>
             </mat-menu></div> </mat-card-title>
-            <mat-card-subtitle>{{ item.item }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ item.fornecedoresdoitem }}</mat-card-subtitle>
             <mat-card-content>
                 {{item.barras}}
             </mat-card-content>
@@ -55,7 +74,35 @@
           </mat-card>
           <br>
     </div>
+    <div *ngIf="buttonAtivado">
+        <button (click)="setarConfiguracoes()" class="btn btn-success">Buscar Fotos na Web</button>
     </div>
+    <h4 *ngIf="!buttonAtivado">Lista de Configuraçẽos para realizar a busca</h4>
+    <div *ngFor="let config of ConfiguracoesCollection; let i = index">
+        
+        <mat-card 
+        [class.active]="i == currentIndex"
+        class="listitem">
+            <mat-card-title>{{config.codigo}} <div class="dots"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="realizarBusca(config)">
+                <mat-icon>visibility</mat-icon>
+                <span>Escolher este</span>
+              </button>
+            </mat-menu></div> </mat-card-title>
+            <mat-card-subtitle>{{ config.id}}</mat-card-subtitle>
+            <mat-card-content>
+                {{config.descricao}}
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+          </mat-card>
+          <br>
+    </div>
+    </div>
+  
 
     <div class="col-md-6">
         <div *ngIf="currentItem.id">

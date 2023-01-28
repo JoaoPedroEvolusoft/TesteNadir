@@ -99,6 +99,18 @@
       </div>
 
       <div class="form-group">
+        <label for="fornecedoresdoitem">Fornecedor</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fornecedor"
+          required
+          [(ngModel)]="item.fornecedoresdoitem"
+          name="fornecedor"
+        />
+      </div>
+
+      <div class="form-group">
         <label for="imagensdoitem">Imagens do Item</label>
         <input
           type="text"

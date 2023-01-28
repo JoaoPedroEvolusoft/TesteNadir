@@ -37,7 +37,7 @@ export class ListImageComponent implements OnInit {
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private imageService: ImageService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ export class ListImageComponent implements OnInit {
         for (let index = 0; index < 5; index++) {
           console.log(this.item.item);
           const StringCaminho =
-            'assets/'+this.item.item+'/img' + this.item.item + '_' + index + '.jpg';
+            'assets/'+this.item.descricao+'/img' + this.item.descricao + '_' + index + '.jpg';
           this.item.imagensdoitem?.push(StringCaminho);
         }
 
@@ -97,4 +97,6 @@ export class ListImageComponent implements OnInit {
       }
     );
   }
+
+ 
 }

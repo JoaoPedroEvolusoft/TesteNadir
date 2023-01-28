@@ -11,7 +11,7 @@ import { ItemService } from 'src/app/services/item.service';
 export class AddItemComponent implements OnInit {
 
   debug: boolean = true;
-
+  numeros = 10;
   item: Item = {};
 
   constructor(private itemService: ItemService,
@@ -30,6 +30,7 @@ export class AddItemComponent implements OnInit {
       precominimo: this.item.precominimo,
       referencia: this.item.referencia,
       marca: this.item.marca,
+      fornecedoresdoitem: this.item.fornecedoresdoitem,
     };
 
     this.itemService.create(data)

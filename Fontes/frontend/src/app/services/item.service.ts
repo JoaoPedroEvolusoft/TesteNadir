@@ -43,4 +43,7 @@ export class ItemService {
   findByDescricao(descricao: any): Observable<Item[]> {
     return this.http.get<Item[]>(`${baseUrl}?descricao=${descricao}`);
   }
+  findByFornecedor(fornecedor: any): Observable<Item[]> {
+    return this.http.get<Item[]>(`${baseUrl}?fornecedoresdoitem=${fornecedor}`);
+  }
 }

@@ -18,6 +18,9 @@ validaCamposRequeridosConfiguracaoBusca = (req) => {
     if (!req.body.variaveis) {
         camposRequeridosEmpty.push("variaveis");
     }
+    if (!req.body.caminhoImagem) {
+      camposRequeridosEmpty.push("caminhoImagem");
+   }
     return camposRequeridosEmpty;
 }
 
@@ -42,7 +45,8 @@ exports.create = (req, res) => {
         descricao: req.body.descricao ? req.body.descricao : null,
         parceiro: req.body.parceiro ? req.body.parceiro: null,
         urlbusca: req.body.urlbusca ? req.body.urlbusca : null,
-        variaveis: req.body.variaveis ? req.body.urlbusca : null,
+        variaveis: req.body.variaveis ? req.body.variaveis : null,
+        caminhoImagem: req.body.caminhoImagem ? req.body.caminhoImagem: null,
     });
 
     // Save ConfiguracaoBusca in the database
@@ -134,7 +138,7 @@ exports.update = (req, res) => {
 // Remove a entidade ConfiguracaoBusca por id
 exports.delete = (req, res) => {
     // Validate request
-    if (!req.body.id) {
+    if (!req.params.id) {
         res.status(400).send({ message: "Conteúdo não pode ser vazio!" });
         return;
     }

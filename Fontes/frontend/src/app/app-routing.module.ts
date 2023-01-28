@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { AddItemComponent } from './components/add-item/add-item.component';

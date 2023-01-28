@@ -12,7 +12,7 @@
           name="codigo"
         />
       </mat-form-field>
-
+      
       <mat-form-field>
         <input
         matInput
@@ -48,15 +48,51 @@
           name="parceiros"
         />
       </mat-form-field>
+      
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Variavel1"
+          type="text"
+          id="variavel1"
+          required
+          [(ngModel)]="variavel1"
+          name="variaveis"
+        />
+      </mat-form-field>
 
       <mat-form-field>
         <input
         matInput
-        placeholder="Variaveis"
+        placeholder="Variavel2"
+          type="text"
+          id="variavel2"
+          required
+          [(ngModel)]="variavel2"
+          name="variaveis"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Variavel3"
+          type="text"
+          id="variavel3"
+          required
+          [(ngModel)]="variavel3"
+          name="variaveis"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Caminho Imagem"
           type="text"
           id="variaveis"
           required
-          [(ngModel)]="configuracaoBusca.variaveis"
+          [(ngModel)]="configuracaoBusca.caminhoImagem"
           name="variaveis"
         />
       </mat-form-field>

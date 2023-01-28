@@ -47,7 +47,7 @@ require("./routes/variavel.routes")(app);
 require("./routes/image.routes.js")(app); 
 
 //Declara ObterProdutos rotas
-
+// require("./routes/buscaPuppeteer.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

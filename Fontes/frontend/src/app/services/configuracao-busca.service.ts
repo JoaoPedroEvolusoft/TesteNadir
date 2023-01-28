@@ -39,4 +39,11 @@ export class ConfiguracaoBuscaService {
   findByDescricao(descricao: any): Observable<ConfiguracaoBusca[]> {
     return this.http.get<ConfiguracaoBusca[]>(`${baseUrl}?descricao=${descricao}`);
   }
+
+  start(data: any): Observable<any> {
+    return this.http.post(`${baseUrl}/puppeteer`,data);
+  }
+  start2(items: any): Observable<any> {
+    return this.http.post(`${baseUrl}/puppeteer/a`,items);
+  }
 }

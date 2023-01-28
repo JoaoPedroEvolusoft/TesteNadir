@@ -8,7 +8,8 @@ module.exports = mongoose => {
       descricao: String,
       parceiro: String, 
       urlbusca: String,
-      variaveis: String,
+      variaveis: [String],
+      caminhoImagem: String
     },
     { timestamps: true }
   );
