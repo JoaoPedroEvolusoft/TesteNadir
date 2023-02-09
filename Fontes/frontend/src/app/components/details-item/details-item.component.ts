@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from 'src/app/services/item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/models/item.model';
+import { Parceiro } from 'src/app/models/parceiro.model';
+import { ObjectId } from 'mongodb';
 
 @Component({
   selector: 'app-details-item',
@@ -9,7 +11,6 @@ import { Item } from 'src/app/models/item.model';
   styleUrls: ['./details-item.component.css']
 })
 export class DetailsItemComponent implements OnInit {
-
   item: Item = {
     item: '',
     descricao: '',
@@ -19,7 +20,7 @@ export class DetailsItemComponent implements OnInit {
     precominimo: 0,
     referencia: '',
     marca: '',
-    fornecedoresdoitem:'',
+    parceiro: {},
   };
   message = '';
   debug = true;

@@ -13,7 +13,9 @@ module.exports = mongoose => {
       referencia: String,
       marca: String,
       imagensdoitem: [String], 
-      fornecedoresdoitem: String, 
+      parceiro: [ 
+        [{type: Schema.Types.ObjectId, ref: 'Parceiro'}] 
+      ], 
     },
     { timestamps: true }
   );

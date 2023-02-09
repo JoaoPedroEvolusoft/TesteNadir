@@ -37,6 +37,7 @@ import { AddConfiguracaoBuscaComponent } from './components/add-configuracao-bus
 import { DetailsConfiguracaoBuscaComponent } from './components/details-configuracao-busca/details-configuracao-busca.component';
 import { AddImageComponent } from './components/add-image/add-image.component';
 import { ListImageComponent } from './components/list-image/list-image.component';
+import { BuscasComponent } from './components/buscas/buscas.component';
 
 @NgModule({ 
   declarations: [ 
@@ -52,6 +53,7 @@ AddConfiguracaoBuscaComponent,
 DetailsConfiguracaoBuscaComponent,
 AddImageComponent,
 ListImageComponent,
+BuscasComponent,
   ],
   imports: [ 
     BrowserModule, 

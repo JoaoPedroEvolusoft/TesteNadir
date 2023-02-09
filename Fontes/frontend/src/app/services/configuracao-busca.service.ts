@@ -46,4 +46,7 @@ export class ConfiguracaoBuscaService {
   start2(items: any): Observable<any> {
     return this.http.post(`${baseUrl}/puppeteer/a`,items);
   }
+  start3(data: any): Observable<any> {
+    return this.http.post(`${baseUrl}/puppeteer/b`,data);
+  }
 }

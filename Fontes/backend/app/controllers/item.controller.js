@@ -1,5 +1,7 @@
+const { mongoose } = require("../../models");
 const db = require("../../models");
 const Item = db.itens;
+const Parceiro = db.parceiros;
 const Imagensdoitem = db.imagensDeItens;
 
 validaCamposRequeridosItem = (req) => {
@@ -28,8 +30,8 @@ validaCamposRequeridosItem = (req) => {
     if (!req.body.marca) {
         camposRequeridosEmpty.push("marca");
     }
-    if (!req.body.fornecedoresdoitem) {
-        camposRequeridosEmpty.push("fornecedoresdoitem");
+    if (!req.body.parceiro) {
+        camposRequeridosEmpty.push("parceiro");
     }
     return camposRequeridosEmpty;
 }
@@ -59,7 +61,7 @@ exports.create = (req, res) => {
         precominimo: req.body.precominimo ? req.body.precominimo : null,
         referencia: req.body.referencia ? req.body.referencia : null,
         marca: req.body.marca ? req.body.marca : null,
-        fornecedoresdoitem: req.body.fornecedoresdoitem ? req.body.fornecedoresdoitem : null,
+        parceiro: req.body.parceiro ? req.body.parceiro.id : null,
     });
 
     // Save Item in the database
@@ -81,12 +83,15 @@ exports.findAll = (req, res) => {
     var condition = {};
 
     const descricao = req.query.descricao;
-    const fornecedoresdoitem = req.query.fornecedoresdoitem;
+    const parceiro = req.query.marca;
+
+    console.log(parceiro);
+
     if (descricao) {
         condition.descricao = { $regex: new RegExp(descricao), $options: "i" };
     }
-    if (fornecedoresdoitem){
-      condition.fornecedoresdoitem= { $regex: new RegExp(fornecedoresdoitem), $options: "i" };
+    if (parceiro){
+        condition.parceiro= { $regex: new RegExp(parceiro), $options: "i" };
     }
 
     Item.find(condition)

@@ -1,5 +1,6 @@
 import { ImagemDeItem } from "./imagem-de-item.model";
 import { FornecedorDeItem } from "./fornecedor-de-item.model";
+import { Parceiro } from "./parceiro.model";
 
 export class Item {
     id?: any;
@@ -12,6 +13,6 @@ export class Item {
     referencia?: string;
     marca?: string;
     imagensdoitem?: String[];
-    fornecedoresdoitem?: string;
+    parceiro?: Parceiro;
 }
 

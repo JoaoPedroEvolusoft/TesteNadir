@@ -3,6 +3,27 @@ const fs = require("fs");
 const axios = require("axios");
 const mongodb = require("mongodb");
 
+async function puxarItens() {
+  // const connectionString = 'mongodb://localhost:27017/live_fabrica';
+  const connectionString =
+    "mongodb+srv://admin:admin@cluster0.a3mav.mongodb.net/curso-javascript?retryWrites=true&w=majority";
+
+  console.info("Conectando ao banco de dados MongoDB...");
+
+  const options = {
+    useUnifiedTopology: true,
+  };
+
+  const client = await mongodb.MongoClient.connect(connectionString, options);
+
+  const db = client.db("curso-javascript");
+  const mensagens = db.collection("items");
+
+  const getItemsValidas = () => mensagens.find({}).toArray();
+
+  const items = await getItemsValidas();
+  return items;
+}
 async function puxarDados() {
   // const connectionString = 'mongodb://localhost:27017/live_fabrica';
   const connectionString =
@@ -185,6 +206,72 @@ exports.start2 = async (req, res) => {
   const variaveis = configbusca.variaveis;
   const caminhoImagem = configbusca.caminhoImagem;
 
+
+  const descricao = [];
+  arrayItens.forEach(function(item=String,i=Number){
+        descricao.push(arrayItens[i].descricao);
+  });
+
+  console.log(descricao);
+
+	if(!urlbusca){
+		res.status(400).send({
+			message:
+			err.message || "Não tem link válido!"
+		});
+	}
+	
+	try {
+
+    
+  
+  		descricao.forEach(function(ola=String,i= Number){
+			console.log(descricao[i]);
+			criarpasta(descricao[i]);
+
+      console.log(urlbusca);
+      console.log(variaveis[i]);
+      console.log(caminhoImagem);
+
+			buscarPuppetear(urlbusca, variaveis , caminhoImagem , descricao[i]);
+  		});
+
+		res.status(200).send({
+			message: "Deu bom"
+		});
+
+	} catch (error) {
+		res.status(400).send({
+			message:
+			err.message || "Não foi possível realizar a busca"
+		});
+	}
+}
+
+exports.start3 = async (req, res) => {
+
+    const corpo = req.body;
+    // console.log(array);
+    const arrayItens= [];
+   idparceiro = corpo.parceiro.id;
+   console.log(idparceiro);
+   const configbusca = corpo.configuracaoBusca;
+   const urlbusca = configbusca.urlbusca;
+   const variaveis = configbusca.variaveis;
+   const caminhoImagem = configbusca.caminhoImagem;
+
+   const itens = await puxarItens();
+   itens.forEach(function(string= String,i=Number){
+    if(itens[i].parceiro == idparceiro){
+      console.log('Empilhado');
+      arrayItens.push(itens[i]);
+     }else{
+      console.log('Não Empilhado!');
+     }
+   }
+   )
+   
+   console.log(arrayItens);
 
   const descricao = [];
   arrayItens.forEach(function(item=String,i=Number){

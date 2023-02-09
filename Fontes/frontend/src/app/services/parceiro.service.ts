@@ -39,4 +39,7 @@ export class ParceiroService {
   findByNome(nome: any): Observable<Parceiro[]> {
     return this.http.get<Parceiro[]>(`${baseUrl}?nome=${nome}`);
   }
+  findByID(nome: any): Observable<Parceiro[]> {
+    return this.http.get<Parceiro[]>(`${baseUrl}?id=${nome}`);
+  }
 }

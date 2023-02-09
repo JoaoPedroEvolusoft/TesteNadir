@@ -11,6 +11,7 @@ import { AddConfiguracaoBuscaComponent } from './components/add-configuracao-bus
 import { DetailsConfiguracaoBuscaComponent } from './components/details-configuracao-busca/details-configuracao-busca.component'; 
 import { AddImageComponent } from './components/add-image/add-image.component';
 import { ListImageComponent } from './components/list-image/list-image.component';
+import { BuscasComponent } from './components/buscas/buscas.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'add/configuracaoBuscas', component: AddConfiguracaoBuscaComponent }, 
   { path: 'add/image/:id', component: AddImageComponent }, 
   { path: 'image/:id', component: ListImageComponent },
-
+  { path: 'buscas/:id' , component : BuscasComponent}
 
 
 ];

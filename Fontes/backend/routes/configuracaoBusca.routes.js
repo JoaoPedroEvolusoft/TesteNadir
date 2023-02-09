@@ -19,5 +19,8 @@ module.exports = app => {
 
     //puppeteer buscas com itens
     router.post("/puppeteer/a", buscaPuppeteer.start2);
+
+    router.post("/puppeteer/b", buscaPuppeteer.start3);
+    
     app.use('/api/configuracoesBuscas', router); 
   }; 

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfiguracaoBusca } from 'src/app/models/configuracao-busca.model';
 import { Item } from 'src/app/models/item.model';
+import { Parceiro } from 'src/app/models/parceiro.model';
 import { ConfiguracaoBuscaService } from 'src/app/services/configuracao-busca.service';
 import { ImageService } from 'src/app/services/image.service';
 import { ItemService } from 'src/app/services/item.service';
+import { ParceiroService } from 'src/app/services/parceiro.service';
 
+ 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
@@ -12,6 +15,11 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class ListItemComponent implements OnInit {
 
+  parceiroSolo:Parceiro={};
+  parceiroDesc? = '';
+
+  parceiroCollection?: Parceiro[];
+  selected = this.parceiroCollection;
   ItemCollection?: Item[];
   ConfiguracoesCollection?: ConfiguracaoBusca[];
   currentItem: Item = {};
@@ -29,12 +37,25 @@ item: any;
 
   constructor(private itemService: ItemService,
               private imageService: ImageService,
-              private configuracoesbuscaService: ConfiguracaoBuscaService) { }
+              private configuracoesbuscaService: ConfiguracaoBuscaService,
+              private parceiroService: ParceiroService) { }
 
   ngOnInit(): void {
     this.retrieveItens();
+    this.retrieveParceiros();
   }
 
+  retrieveParceiros(): void{
+    this.parceiroService.getAll()
+      .subscribe(
+        data => {
+          this.parceiroCollection = data;
+          if (this.debug) console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
   setarConfiguracoes(): void{
     this.buttonAtivado = false;
     this.retriveConfiguracoes();
@@ -107,8 +128,8 @@ item: any;
   searchFornecedor(): void{
       this.currentItem = {};
       this.currentIndex = -1;
-
-      this.itemService.findByFornecedor(this.fornecedor)
+       
+      this.itemService.findByFornecedor(this.selected)
         .subscribe(
           data => {
             this.ItemCollection = data;
@@ -155,7 +176,7 @@ item: any;
           precominimo: item.precominimo,
           referencia: item.referencia,
           marca: item.marca,
-          fornecedoresdoitem: item.fornecedoresdoitem,
+          parceiro: item.parceiro,
           config: configuracaoBusca,
         };
           this.itemTroca.push(data);

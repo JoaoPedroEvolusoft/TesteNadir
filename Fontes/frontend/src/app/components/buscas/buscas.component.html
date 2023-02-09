@@ -1,0 +1,28 @@
+
+<div class="col-md-6">
+    <h4>Lista de Configurações</h4>
+<div *ngFor="let conf of ConfiguracoesCollection; let i = index">
+    <mat-card 
+    [class.active]="i == currentIndex"
+    class="listconf">
+        <mat-card-title>
+            {{conf.descricao}} 
+        <div class="dots">
+            
+        <button routerLink="/itens" mat-icon-button aria-label="Example icon-button with a menu" class="btn btn-success" (click)="realizarBusca(conf, parceiro)">Buscar Neste
+            <mat-icon>thumb_up</mat-icon>
+        </button>
+
+        </div> 
+    
+        </mat-card-title>
+
+        <mat-card-subtitle>{{ conf.urlbusca}}</mat-card-subtitle>
+
+        <mat-card-content>
+            {{conf.caminhoImagem}}
+        </mat-card-content>
+
+      </mat-card>
+      <br>
+</div>

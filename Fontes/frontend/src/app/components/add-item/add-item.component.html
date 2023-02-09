@@ -99,17 +99,17 @@
         />
       </mat-form-field>
 
-      <mat-form-field>
-        <input
-        matInput
-        placeholder="Fornecedor"
-          type="text"
-          id="fornecedor"
-          required
-          [(ngModel)]="item.fornecedoresdoitem"
-          name="fornecedor"
-        />
-      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Parceiros</mat-label>
+        <mat-select [(ngModel)]="item.parceiro" [(value)]="selected">
+            <mat-option *ngFor="let parceiro of parceiroCollection"  [value]="parceiro">
+            {{parceiro.nome}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
       <button (click)="saveItem()" class="btn btn-success">Submit</button>
 
     </div>

@@ -21,19 +21,23 @@
 
     <div class="col-md-8">
         <div class="input-group mb-3">
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Procurar por Fornecedor"
-                [(ngModel)]="fornecedor"
-            />
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Parceiros</mat-label>
+                    <mat-select  [(value)]="selected">
+                        <mat-option *ngFor="let parceiro of parceiroCollection"  [value]="parceiro.id">
+                        {{parceiro.nome}}
+                        </mat-option>
+                    </mat-select>
+                    </mat-form-field>
+            </div>
             <div class="input-group-append">
                 <button
-                    class="btn btn-outline-secondary"
+                class="btn btn-success"
                     type="button"
-                    (click)="searchFornecedor()"
+                    routerLink="/buscas/{{selected}}"
                 >
-                    Procurar
+                    Procurar Imagens na Web
                 </button>
             </div>
         </div>
@@ -65,7 +69,7 @@
                 <span>Deletar</span>
               </button>
             </mat-menu></div> </mat-card-title>
-            <mat-card-subtitle>{{ item.fornecedoresdoitem }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ item.parceiro?.nome}}</mat-card-subtitle>
             <mat-card-content>
                 {{item.barras}}
             </mat-card-content>
@@ -74,36 +78,7 @@
           </mat-card>
           <br>
     </div>
-    <div *ngIf="buttonAtivado">
-        <button (click)="setarConfiguracoes()" class="btn btn-success">Buscar Fotos na Web</button>
-    </div>
-    <h4 *ngIf="!buttonAtivado">Lista de Configuraçẽos para realizar a busca</h4>
-    <div *ngFor="let config of ConfiguracoesCollection; let i = index">
-        
-        <mat-card 
-        [class.active]="i == currentIndex"
-        class="listitem">
-            <mat-card-title>{{config.codigo}} <div class="dots"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="realizarBusca(config)">
-                <mat-icon>visibility</mat-icon>
-                <span>Escolher este</span>
-              </button>
-            </mat-menu></div> </mat-card-title>
-            <mat-card-subtitle>{{ config.id}}</mat-card-subtitle>
-            <mat-card-content>
-                {{config.descricao}}
-            </mat-card-content>
-            <mat-card-actions>
-            </mat-card-actions>
-          </mat-card>
-          <br>
-    </div>
-    </div>
-  
-
+</div>
     <div class="col-md-6">
         <div *ngIf="currentItem.id">
         <h4>Item</h4>
@@ -134,8 +109,8 @@
         <div>
             <label><strong>Imagensdoitem:</strong></label> <img src="{{currentItem.imagensdoitem}}" width="300"/>
         </div>
-        <div>
-            <label><strong>Fornecedoresdoitem:</strong></label> {{ currentItem.fornecedoresdoitem }}
+        <div for="currentItem.parceiro">
+            <label><strong>ParceiroDoItem:</strong></label> {{ currentItem.parceiro }}
         </div>
 
         <a class="badge badge-warning" routerLink="/itens/{{ currentItem.id }}">
