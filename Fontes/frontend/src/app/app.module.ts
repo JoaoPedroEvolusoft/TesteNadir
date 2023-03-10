@@ -38,6 +38,11 @@ import { DetailsConfiguracaoBuscaComponent } from './components/details-configur
 import { AddImageComponent } from './components/add-image/add-image.component';
 import { ListImageComponent } from './components/list-image/list-image.component';
 import { BuscasComponent } from './components/buscas/buscas.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
+import { DetalhesItemComponent } from './components/detalhes-item/detalhes-item.component';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 @NgModule({ 
   declarations: [ 
@@ -54,6 +59,8 @@ DetailsConfiguracaoBuscaComponent,
 AddImageComponent,
 ListImageComponent,
 BuscasComponent,
+DetalhesItemComponent,
+WhatsappComponent
   ],
   imports: [ 
     BrowserModule, 
@@ -78,7 +85,10 @@ BuscasComponent,
     MatTableModule, 
     MatIconModule, 
     MatDividerModule, 
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    InfiniteScrollModule
   ], 
   providers: [ 
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }, 

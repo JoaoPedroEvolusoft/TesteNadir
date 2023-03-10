@@ -4,7 +4,11 @@ var Schema = mongoose.Schema;
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      parceiro: Number,
+      parceiro: {
+        type: Number,
+        unique: true,
+        required: true
+    },
       nome: String,
       fantasia: String,
       cpfCnpj: String,

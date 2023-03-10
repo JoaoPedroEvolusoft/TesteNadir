@@ -3,6 +3,10 @@ module.exports = app => {
     var router = require("express").Router(); 
     // Create a new Item 
     router.post("/", itens.create); 
+    // Create todos os itens do JSON
+    router.post("/json",itens.exportaJSON);
+    //fazerPaginacao
+    router.get("/paginacao", itens.getAllPosts);
     // Retrieve all itens 
     router.get("/", itens.findAll); 
     // Retrieve a single Item with id 

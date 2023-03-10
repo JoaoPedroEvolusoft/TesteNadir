@@ -6,8 +6,10 @@ module.exports = app => {
     router.post("/", configuracoesBuscas.create); 
     // Retrieve all configuracoesBuscas 
     router.get("/", configuracoesBuscas.findAll); 
-    // Retrieve a single ConfiguracaoBusca with id 
-    router.get("/:id", configuracoesBuscas.findOne); 
+    // Retrieve por pagina
+    router.get("/paginacao", configuracoesBuscas.getAllPosts)
+     // Retrieve a single ConfiguracaoBusca with id 
+     router.get("/:id", configuracoesBuscas.findOne); 
     // Update a ConfiguracaoBusca with id 
     router.put("/:id", configuracoesBuscas.update); 
     // Delete a ConfiguracaoBusca with id 

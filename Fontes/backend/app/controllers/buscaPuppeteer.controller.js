@@ -1,61 +1,25 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
 const axios = require("axios");
-const mongodb = require("mongodb");
+const db = require("../../models");
+const itemModel = require("../../models/item.model");
+const { itens } = require("../../models");
+const Item = db.itens;
 
-async function puxarItens() {
-  // const connectionString = 'mongodb://localhost:27017/live_fabrica';
-  const connectionString =
-    "mongodb+srv://admin:admin@cluster0.a3mav.mongodb.net/curso-javascript?retryWrites=true&w=majority";
-
-  console.info("Conectando ao banco de dados MongoDB...");
-
-  const options = {
-    useUnifiedTopology: true,
-  };
-
-  const client = await mongodb.MongoClient.connect(connectionString, options);
-
-  const db = client.db("curso-javascript");
-  const mensagens = db.collection("items");
-
-  const getItemsValidas = () => mensagens.find({}).toArray();
-
-  const items = await getItemsValidas();
-  return items;
-}
-async function puxarDados() {
-  // const connectionString = 'mongodb://localhost:27017/live_fabrica';
-  const connectionString =
-    "mongodb+srv://admin:admin@cluster0.a3mav.mongodb.net/curso-javascript?retryWrites=true&w=majority";
-
-  console.info("Conectando ao banco de dados MongoDB...");
-
-  const options = {
-    useUnifiedTopology: true,
-  };
-
-  const client = await mongodb.MongoClient.connect(connectionString, options);
-
-  const db = client.db("curso-javascript");
-  const mensagens = db.collection("items");
-
-  const getItemsValidas = () => mensagens.find({}).toArray();
-
-  const items = await getItemsValidas();
-
-  const CodItems = [];
-  items.forEach(function (name, i) {
-    CodItems.push(items[i].item);
-  });
-
-  return CodItems;
-}
-
-async function buscarPuppetear(url = String, variaveis= [], caminhoImagem= String, codigo = String) {
-  const browser = await puppeteer.launch({ headless: false });
+async function buscarPuppetear(
+  url = String,
+  variaveis = [],
+  caminhoImagem = String,
+  Itens= []
+) {
+  for(let index=0; index<Itens.length; index++){
+  const browser = await puppeteer.launch({ headless: false, maxConcurrency: 1});
   const page = await browser.newPage();
-  await page.goto(url + codigo);
+  await page.goto(url + Itens[index].descricao,{
+    waitUntil: 'load',
+    // Remove the timeout
+    timeout: 0
+});
 
   //   await page.screenshot({path: 'example.png'});
   try {
@@ -67,35 +31,57 @@ async function buscarPuppetear(url = String, variaveis= [], caminhoImagem= Strin
     await page.click(variaveis[0], { clickCount: 1 });
     await page.waitForTimeout(5000);
     await page.click(variaveis[1], { clickCount: 1 });
-  } catch (err) {
-    console.log("Erro: " + err);
-  }
+  } catch (err) {}
   await page.waitForTimeout(10000);
   try {
     const imgList = await retornaListaImagens(page, caminhoImagem);
-    console.log("O codigo é : " + codigo);
+    console.log("O codigo é : " + Itens[index].item);
     console.log("Os src são : ");
     console.log(imgList);
 
+
+    const codigoDoProduto = Itens[index].item;
+    var caminhoPasta = "";
+    const tamanhoVetor = codigoDoProduto.length;
+    let i = 0;
+    var posicao = 0;
+    while (i != tamanhoVetor) {
+      caminhoPasta = caminhoPasta + codigoDoProduto.substr(posicao, 2);
+      // console.log(caminhoPasta);
+      try {
+        criarpasta(caminhoPasta);
+      } catch (err) {
+        console.log("Deu erro aqui mas segue o jogo!");
+      }
+      caminhoPasta = caminhoPasta + "/";
+      i++;
+      posicao = posicao + 2;
+      if (codigoDoProduto.length < posicao) {
+        i = codigoDoProduto.length;
+      }
+    }
     imgList.forEach(function (element = any, i = Number) {
       console.log("Elemento: ");
-      console.log(element.src + "       " + i + "       " + codigo);
-
-      baixarImagens(element.src, i, codigo);
+      console.log(element.src + "       " + i + "       " + Itens[index].item);
+      console.log("Aqui estamos : "+caminhoPasta);
+      baixarImagens(element.src, i, codigoDoProduto, caminhoPasta);
     });
   } catch (err) {
-    console.log("Erro aqui : ");
     console.log(err);
   }
   await page.waitForTimeout(10000);
   await browser.close();
 }
+}
 
-async function retornaListaImagens(page = puppeteer.Page, caminhoImagem = String) {
+async function retornaListaImagens(
+  page = puppeteer.Page,
+  caminhoImagem = String
+) {
   const imgList = await page.evaluate((caminhoImagem) => {
     // var caminhoImagem =
     //   ".ui-pdp-gallery__column .ui-pdp-gallery__wrapper .ui-pdp-gallery__figure img";
-    
+
     // var caminhoImagem2 = ".swiper-wrapper .swiper-slide .pswp-open img";
 
     //Declara o Caminho que vamos percorrer para chegar na imagem
@@ -113,9 +99,9 @@ async function retornaListaImagens(page = puppeteer.Page, caminhoImagem = String
     }));
 
     //colocar para fora da funçao
-	return imglist;
-	}, caminhoImagem);
-	return imgList;
+    return imglist;
+  }, caminhoImagem);
+  return imgList;
 }
 
 // function criarArquivosSRC(imgList = any, codigo = String){
@@ -125,7 +111,7 @@ async function retornaListaImagens(page = puppeteer.Page, caminhoImagem = String
 //                 console.log('well done')
 //         })
 // }
-function baixarImagens(imgList = String, i = Number, codigo = String) {
+function baixarImagens(imgList = String, i = Number, codigo = String, caminhoPastas = String) {
   axios({
     method: "GET",
     url: imgList,
@@ -135,8 +121,7 @@ function baixarImagens(imgList = String, i = Number, codigo = String) {
       response.data.pipe(
         fs.createWriteStream(
           "../frontend/src/assets/" +
-            codigo +
-            "/img" +
+            caminhoPastas+
             codigo +
             "_" +
             i +
@@ -146,7 +131,7 @@ function baixarImagens(imgList = String, i = Number, codigo = String) {
       console.log("Baixada!");
     })
     .catch((error) => {
-      console.log(error);
+      console.log("Não Foi possivel Baixar");
     });
 }
 async function criarpasta(codigo = String) {
@@ -155,42 +140,57 @@ async function criarpasta(codigo = String) {
     fs.mkdirSync(caminhoPasta);
     console.log("Pasta criada");
   } catch (err) {
-    console.log(err);
+    console.log("Você ja criou estes diretórios do seguinte tipo: "+ caminhoPasta);
   }
 }
 
 exports.start = async (req, res) => {
-	const urlbusca = req.body.urlbusca;
+
+  const itens = await Item.find();
+
+  const urlbusca = req.body.urlbusca;
   const variaveis = req.body.variaveis;
   const caminhoImagem = req.body.caminhoImagem;
-	if(!urlbusca){
-		res.status(400).send({
-			message:
-			err.message || "Não tem link válido!"
-		});
-	}
-	
-	try {
+  if (!urlbusca) {
+    res.status(400).send({
+      message: err.message || "Não tem link válido!",
+    });
+  }
 
-		const codigos = await puxarDados();
-  		codigos.forEach(function (codigo = String) {
-			console.log(codigo);
-			criarpasta(codigo);
-			buscarPuppetear(urlbusca, variaveis , caminhoImagem , codigo);
-  		});
-
-		res.status(200).send({
-			message: "Deu bom"
-		});
-
-	} catch (error) {
-		res.status(400).send({
-			message:
-			err.message || "Não foi possível realizar a busca"
-		});
-	}
-}
-
+  try {
+    itens.forEach(async function (codigo = String,index = Number) {
+      const codigoDoProduto = itens[index].item;
+      var caminhoPasta = "";
+      const tamanhoVetor = codigoDoProduto.length;
+      let i = 0;
+      var posicao = 0;
+      while (i != tamanhoVetor) {
+        caminhoPasta = caminhoPasta + codigoDoProduto.substr(posicao, 2);
+        // console.log(caminhoPasta);
+        try {
+          criarpasta(caminhoPasta);
+        } catch (err) {
+          console.log("Deu erro aqui mas segue o jogo!");
+        }
+        caminhoPasta = caminhoPasta + "/";
+        i++;
+        posicao = posicao + 2;
+        // console.log(caminhoPasta);
+        if (codigoDoProduto.length < posicao) {
+          i = codigoDoProduto.length;
+        }
+      }
+    });
+     buscarPuppetear(urlbusca, variaveis , caminhoImagem , itens);
+    res.status(200).send({
+      message: "Deu bom",
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: err.message || "Não foi possível realizar a busca",
+    });
+  }
+};
 
 // for(let i=0 ; i<20 ; i++){
 //         let codigo = ''+i
@@ -199,117 +199,150 @@ exports.start = async (req, res) => {
 // }
 exports.start2 = async (req, res) => {
   const arrayItens = req.body;
-  
+
   const configbusca = arrayItens[0].config;
 
   const urlbusca = configbusca.urlbusca;
   const variaveis = configbusca.variaveis;
   const caminhoImagem = configbusca.caminhoImagem;
 
-
   const descricao = [];
-  arrayItens.forEach(function(item=String,i=Number){
-        descricao.push(arrayItens[i].descricao);
+  const codigo = [];
+  arrayItens.forEach(function (item = String, i = Number) {
+    descricao.push(arrayItens[i].descricao);
+    codigo.push(arrayItens[i].item);
   });
 
   console.log(descricao);
 
-	if(!urlbusca){
-		res.status(400).send({
-			message:
-			err.message || "Não tem link válido!"
-		});
-	}
-	
-	try {
+  if (!urlbusca) {
+    res.status(400).send({
+      message: err.message || "Não tem link válido!",
+    });
+  }
 
-    
-  
-  		descricao.forEach(function(ola=String,i= Number){
-			console.log(descricao[i]);
-			criarpasta(descricao[i]);
+  try {
+    descricao.forEach(function (ola = String, i = Number) {
+      console.log(descricao[i]);
+
+      const codigoDoProduto = codigo[i];
+      var caminhoPasta = "";
+      const tamanhoVetor = codigoDoProduto.length;
+      let indexDoWhile = 0;
+      var posicao = 0;
+      while (indexDoWhile != tamanhoVetor) {
+        caminhoPasta = caminhoPasta + codigoDoProduto.substr(posicao, 2);
+        console.log(caminhoPasta);
+        try {
+          criarpasta(caminhoPasta);
+        } catch (err) {
+          console.log("Deu erro aqui mas segue o jogo!");
+        }
+        caminhoPasta = caminhoPasta + "/";
+        indexDoWhile++;
+        posicao = posicao + 2;
+        console.log(caminhoPasta);
+        if (codigoDoProduto.length < posicao) {
+          indexDoWhile = codigoDoProduto.length;
+        }
+      }
 
       console.log(urlbusca);
       console.log(variaveis[i]);
       console.log(caminhoImagem);
 
-			buscarPuppetear(urlbusca, variaveis , caminhoImagem , descricao[i]);
-  		});
+      buscarPuppetear(urlbusca, variaveis , caminhoImagem , descricao[i], codigo[i]);
+    });
 
-		res.status(200).send({
-			message: "Deu bom"
-		});
-
-	} catch (error) {
-		res.status(400).send({
-			message:
-			err.message || "Não foi possível realizar a busca"
-		});
-	}
-}
+    res.status(200).send({
+      message: "Deu bom",
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: err.message || "Não foi possível realizar a busca",
+    });
+  }
+};
 
 exports.start3 = async (req, res) => {
+  const corpo = req.body;
+  // console.log(array);
+  const arrayItens = [];
+  idparceiro = corpo.parceiro.id;
+  console.log(idparceiro);
+  const configbusca = corpo.configuracaoBusca;
+  const urlbusca = configbusca.urlbusca;
+  const variaveis = configbusca.variaveis;
+  const caminhoImagem = configbusca.caminhoImagem;
 
-    const corpo = req.body;
-    // console.log(array);
-    const arrayItens= [];
-   idparceiro = corpo.parceiro.id;
-   console.log(idparceiro);
-   const configbusca = corpo.configuracaoBusca;
-   const urlbusca = configbusca.urlbusca;
-   const variaveis = configbusca.variaveis;
-   const caminhoImagem = configbusca.caminhoImagem;
-
-   const itens = await puxarItens();
-   itens.forEach(function(string= String,i=Number){
-    if(itens[i].parceiro == idparceiro){
-      console.log('Empilhado');
+  const itens = await puxarItens();
+  itens.forEach(function (string = String, i = Number) {
+    if (itens[i].parceiro == idparceiro) {
+      console.log("Empilhado");
       arrayItens.push(itens[i]);
-     }else{
-      console.log('Não Empilhado!');
-     }
-   }
-   )
-   
-   console.log(arrayItens);
+    } else {
+      console.log("Não Empilhado!");
+    }
+  });
+
+  console.log(arrayItens);
 
   const descricao = [];
-  arrayItens.forEach(function(item=String,i=Number){
-        descricao.push(arrayItens[i].descricao);
+  const codigo = [];
+
+  arrayItens.forEach(function (item = String, i = Number) {
+    descricao.push(arrayItens[i].descricao);
+    codigo.push(arrayItens[i].item);
+
   });
 
   console.log(descricao);
 
-	if(!urlbusca){
-		res.status(400).send({
-			message:
-			err.message || "Não tem link válido!"
-		});
-	}
-	
-	try {
+  if (!urlbusca) {
+    res.status(400).send({
+      message: err.message || "Não tem link válido!",
+    });
+  }
 
-    
-  
-  		descricao.forEach(function(ola=String,i= Number){
-			console.log(descricao[i]);
-			criarpasta(descricao[i]);
+  try {
+    descricao.forEach(function (ola = String, i = Number) {
+      console.log(descricao[i]);
+
+      const codigoDoProduto = codigo[i];
+      var caminhoPasta = "";
+      const tamanhoVetor = codigoDoProduto.length;
+      let indexDoWhile = 0;
+      var posicao = 0;
+      while (indexDoWhile != tamanhoVetor) {
+        caminhoPasta = caminhoPasta + codigoDoProduto.substr(posicao, 2);
+        console.log(caminhoPasta);
+        try {
+          criarpasta(caminhoPasta);
+        } catch (err) {
+          console.log("Deu erro aqui mas segue o jogo!");
+        }
+        caminhoPasta = caminhoPasta + "/";
+        indexDoWhile++;
+        posicao = posicao + 2;
+        console.log(caminhoPasta);
+        if (codigoDoProduto.length < posicao) {
+          indexDoWhile = codigoDoProduto.length;
+        }
+      }
 
       console.log(urlbusca);
       console.log(variaveis[i]);
       console.log(caminhoImagem);
 
-			buscarPuppetear(urlbusca, variaveis , caminhoImagem , descricao[i]);
-  		});
+      buscarPuppetear(urlbusca, variaveis , caminhoImagem , descricao[i],codigo[i]);
+    });
 
-		res.status(200).send({
-			message: "Deu bom"
-		});
-
-	} catch (error) {
-		res.status(400).send({
-			message:
-			err.message || "Não foi possível realizar a busca"
-		});
-	}
-}
+    res.status(200).send({
+      message: "Deu bom",
+    });
+  } catch (error) {
+    res.status(400).send({
+      message: err.message || "Não foi possível realizar a busca",
+    });
+  }
+};

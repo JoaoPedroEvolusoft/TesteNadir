@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { ConfiguracaoBusca } from 'src/app/models/configuracao-busca.model';
 import { Item } from 'src/app/models/item.model';
 import { Parceiro } from 'src/app/models/parceiro.model';
@@ -6,7 +7,7 @@ import { ConfiguracaoBuscaService } from 'src/app/services/configuracao-busca.se
 import { ImageService } from 'src/app/services/image.service';
 import { ItemService } from 'src/app/services/item.service';
 import { ParceiroService } from 'src/app/services/parceiro.service';
-
+import {ChangeDetectionStrategy, Input} from '@angular/core';
  
 @Component({
   selector: 'app-list-item',
@@ -15,6 +16,8 @@ import { ParceiroService } from 'src/app/services/parceiro.service';
 })
 export class ListItemComponent implements OnInit {
 
+  pageNumber= 20;
+  estaCarregandoSpinner: boolean = true
   parceiroSolo:Parceiro={};
   parceiroDesc? = '';
 
@@ -40,11 +43,21 @@ item: any;
               private configuracoesbuscaService: ConfiguracaoBuscaService,
               private parceiroService: ParceiroService) { }
 
+  
   ngOnInit(): void {
-    this.retrieveItens();
+    for(let i=1;i<=100;i++){
+      this.post.push(i);
+    }
+    this.retrieveItensPage(0,10);
     this.retrieveParceiros();
+   
   }
-
+  post:any=[];
+  onScroll(){
+    // this.pageNumber = this.pageNumber+10;
+    console.log('Down');
+    // this.retrieveItensPage(1,this.pageNumber);
+  }
   retrieveParceiros(): void{
     this.parceiroService.getAll()
       .subscribe(
@@ -76,6 +89,7 @@ item: any;
       .subscribe(
         data => {
           this.ItemCollection = data;
+          this.estaCarregandoSpinner = false;
           if (this.debug) console.log(data);
         },
         error => {
@@ -83,8 +97,14 @@ item: any;
         });
   }
 
+  retrieveItensPage(page:any,limit:any): void {
+    this.itemService.getPage(page,limit).subscribe(data=>{
+      this.ItemCollection=data;
+      this.estaCarregandoSpinner = false;
+    })
+  }
   refreshList(): void {
-    this.retrieveItens();
+    this.retrieveItensPage(0,10);
     this.currentItem = {};
     this.currentConfiguracoes = {};
     this.currentIndex = -1;
@@ -97,6 +117,7 @@ item: any;
     this.currentItem = item;
     this.currentIndex = index;
     this.imageRetriever();
+    
   }
 
   removeAllItens(): void {
@@ -115,7 +136,7 @@ item: any;
     this.currentItem = {};
     this.currentIndex = -1;
 
-    this.itemService.findByDescricao(this.descricao)
+    this.itemService.findByDescricao(this.descricao,0,100)
       .subscribe(
         data => {
           this.ItemCollection = data;
@@ -197,4 +218,18 @@ item: any;
         });
         this.itemTroca=[];
   }
+  OnPageChange(event: PageEvent) {
+    this.estaCarregandoSpinner=true;
+    console.log(event);
+    setTimeout(() => {
+      this.retrieveItensPage(event.pageIndex+1,event.pageSize);
+    }, 500);
+    
+    
+    }
+    teste(): void{
+      console.log("ola mundo");
+    }
+    
 }
+

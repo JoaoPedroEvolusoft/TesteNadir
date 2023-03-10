@@ -25,6 +25,7 @@
     "file-saver": "^2.0.5",
     "jquery": "^3.3.1",
     "mongodb": "^4.13.0",
+    "ngx-infinite-scroll": "^15.0.0",
     "path-browserify": "^1.0.1",
     "popper.js": "^1.14.3",
     "rxjs": "~7.5.0",

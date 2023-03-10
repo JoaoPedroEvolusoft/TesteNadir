@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { ConfiguracaoBusca } from 'src/app/models/configuracao-busca.model';
 import { ConfiguracaoBuscaService } from 'src/app/services/configuracao-busca.service';
 
@@ -8,6 +9,7 @@ import { ConfiguracaoBuscaService } from 'src/app/services/configuracao-busca.se
   styleUrls: ['./list-configuracao-busca.component.css']
 })
 export class ListConfiguracaoBuscaComponent implements OnInit {
+  estaCarregandoSpinner: boolean = true
   ConfiguracaoBuscaCollection?: ConfiguracaoBusca[];
   currentConfiguracaoBusca: ConfiguracaoBusca = {};
   currentIndex = -1;
@@ -17,7 +19,7 @@ export class ListConfiguracaoBuscaComponent implements OnInit {
   constructor(private configuracaoBuscaService: ConfiguracaoBuscaService) { }
 
   ngOnInit(): void {
-    this.retrieveConfiguracoesBuscas();
+    this.retrieveConfiguracoesBuscaPage(0,10);
   }
 
   retrieveConfiguracoesBuscas(): void {
@@ -37,7 +39,13 @@ export class ListConfiguracaoBuscaComponent implements OnInit {
     this.currentConfiguracaoBusca = {};
     this.currentIndex = -1;
   }
-
+  OnPageChange(event: PageEvent) {
+    this.estaCarregandoSpinner=true;
+    console.log(event);
+    setTimeout(() => {
+      this.retrieveConfiguracoesBuscaPage(event.pageIndex+1,event.pageSize);
+    }, 500);
+  }
   setActiveConfiguracaoBusca(configuracaoBusca: ConfiguracaoBusca, index: number): void {
     this.currentConfiguracaoBusca = configuracaoBusca;
     this.currentIndex = index;
@@ -83,6 +91,23 @@ export class ListConfiguracaoBuscaComponent implements OnInit {
             });
   }
 
+  deleteConfiguracaoBusca(configuracaoBusca: ConfiguracaoBusca): void {
+    this.configuracaoBuscaService.delete(configuracaoBusca.id)
+      .subscribe(
+        response => {
+          if (this.debug) console.log(response);
+          this.refreshList();
+        },
+        error => {
+          console.log(error);
+        });
+  }
+  retrieveConfiguracoesBuscaPage(page:any,limit:any): void {
+    this.configuracaoBuscaService.getPage(page,limit).subscribe(data=>{
+      this.ConfiguracaoBuscaCollection=data;
+      this.estaCarregandoSpinner = false;
+    })
+  }
   // realizarBusca(): void{
   //   this.buscaPuppeteer.start().subscribe(
   //     (response) => {

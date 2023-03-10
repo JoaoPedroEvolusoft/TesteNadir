@@ -1,5 +1,8 @@
 const db = require("../../models");
+const { create } = require("./item.controller");
 const Parceiro = db.parceiros;
+const csvToJson = require('convert-csv-to-json');
+const fs = require("fs");
 
 validaCamposRequeridosParceiro = (req) => {
     const camposRequeridosEmpty = new Array();
@@ -179,6 +182,23 @@ exports.deleteAll = (req, res) => {
         res.status(500).send({
           message:
             err.message || "Algum erro desconhecido ocorreu ao excluir todas as entidades Parceiro."
+        });
+      });
+};
+
+exports.exportaJSON = (req,res) => {
+  const fileInputName = "app/controllers/parceiros.csv"
+  const jsonDeParceiros = csvToJson.fieldDelimiter(',').formatValueByType().getJsonFromCsv(fileInputName);
+
+
+   Parceiro.insertMany(jsonDeParceiros).then(
+      data=>{
+        res.send({ message: `Dados inseridos com Sucesso` });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Algum erro desconhecido ocorreu ao salvar todas as entidades Parceiro."
         });
       });
 };

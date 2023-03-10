@@ -181,3 +181,32 @@ exports.deleteAll = (req, res) => {
         });
       });
 };
+
+exports.getAllPosts = async (req, res) => {
+  try {
+    // Aqui pegamos pelos query params a página que queremos e como query params
+    // vêm em string convertemos para números e caso seja vazio estamos settando para 1
+    const pagina = +req.query.page || 1;
+
+    // Aqui estamos pegando o limite informado pelos query params e 
+    // convertendo para número caso seja vazio settamos para 10 
+
+    const limite = +req.query.limit || 10;
+
+    // Aqui rola um cálculo maroto, onde subtraimos para pegarmos a página anterior e multiplicamos pelo limite
+    // para termos o salto desejado;
+
+    const salto = (pagina - 1) * limite;
+
+    // Aqui fazemos a pesquisa no nosso banco e realizamos a paginação.
+    // Skip e Limit que estão no chaining do documento são metodos do Mongoose
+    const post = await ConfiguracaoBusca.find().skip(salto).limit(limite);
+    res.send(post);
+    res.status(200).json({
+      status: 'sucesso',
+      post,
+    });
+  } catch (err) {
+    // ...error Handling
+  }
+};

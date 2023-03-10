@@ -9,6 +9,7 @@ const baseUrl = 'http://localhost:8080/api/configuracoesBuscas';
   providedIn: 'root'
 })
 export class ConfiguracaoBuscaService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -48,5 +49,8 @@ export class ConfiguracaoBuscaService {
   }
   start3(data: any): Observable<any> {
     return this.http.post(`${baseUrl}/puppeteer/b`,data);
+  }
+  getPage(page: any, limit: any): Observable<ConfiguracaoBusca[]> {
+    return this.http.get<ConfiguracaoBusca[]>(`${baseUrl}/paginacao?page=${page}&limit=${limit}`);
   }
 }

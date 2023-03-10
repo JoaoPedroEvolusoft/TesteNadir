@@ -3,6 +3,8 @@ module.exports = app => {
     var router = require("express").Router(); 
     // Create a new Parceiro 
     router.post("/", parceiros.create); 
+    //Create todos os parceiros do JSON
+    router.post("/json", parceiros.exportaJSON); 
     // Retrieve all parceiros 
     router.get("/", parceiros.findAll); 
     // Retrieve a single Parceiro with id 

@@ -23,6 +23,9 @@ export class ItemService {
   get(id: any): Observable<Item> {
     return this.http.get(`${baseUrl}/${id}`);
   }
+  getPage(page: any,limit: any): Observable<Item[]> {
+    return this.http.get<Item[]>(`${baseUrl}/paginacao?page=${page}&limit=${limit}`);
+  }
 
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
@@ -40,8 +43,8 @@ export class ItemService {
     return this.http.delete(baseUrl);
   }
 
-  findByDescricao(descricao: any): Observable<Item[]> {
-    return this.http.get<Item[]>(`${baseUrl}?descricao=${descricao}`);
+  findByDescricao(descricao: any,page: any, limit: any): Observable<Item[]> {
+    return this.http.get<Item[]>(`${baseUrl}?descricao=${descricao}&page=${page}&limit=${limit}`);
   }
   findByFornecedor(parceiro: any): Observable<Item[]> {
     return this.http.get<Item[]>(`${baseUrl}?marca=${parceiro}`);

@@ -12,6 +12,8 @@ import { DetailsConfiguracaoBuscaComponent } from './components/details-configur
 import { AddImageComponent } from './components/add-image/add-image.component';
 import { ListImageComponent } from './components/list-image/list-image.component';
 import { BuscasComponent } from './components/buscas/buscas.component';
+import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
+import { DetalhesItemComponent } from './components/detalhes-item/detalhes-item.component';
 
 
 const routes: Routes = [
@@ -28,9 +30,9 @@ const routes: Routes = [
   { path: 'add/configuracaoBuscas', component: AddConfiguracaoBuscaComponent }, 
   { path: 'add/image/:id', component: AddImageComponent }, 
   { path: 'image/:id', component: ListImageComponent },
-  { path: 'buscas/:id' , component : BuscasComponent}
-
-
+  { path: 'buscas/:id' , component : BuscasComponent},
+  { path: 'whatsapp/:id' , component : WhatsappComponent},
+  { path: 'detalhesitem/:id' , component : DetalhesItemComponent},
 ];
 
 @NgModule({

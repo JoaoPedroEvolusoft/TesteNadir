@@ -1,126 +1,83 @@
-<div class="list row">
-    <div class="col-md-8">
-        <div class="input-group mb-3">
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Procurar por Descricao"
-                [(ngModel)]="descricao"
-            />
-            <div class="input-group-append">
-                <button
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    (click)="searchDescricao()"
-                >
-                    Procurar
+<div class="list row" charset="UTF-8" >
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Procurar por Descricao"
+        [(ngModel)]="descricao"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchDescricao()"
+        >
+          Procurar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" charset="UTF-8" >
+    <h4 *ngIf="!estaCarregandoSpinner">Lista de Itens</h4>
+    <mat-spinner *ngIf="estaCarregandoSpinner"></mat-spinner>
+    <div  *ngIf="!estaCarregandoSpinner" >
+    <div infiniteScroll
+    (scrolled)="onScroll()">
+      <div *ngFor="let item of ItemCollection; let i = index" charset="UTF-8" >
+        <mat-card [class.active]="i == currentIndex" class=".is-focusable" routerLink="/detalhesitem/{{ item.id }}">
+          <mat-card-title  
+            >{{ item.descricao }}
+            <div class="dots">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu  #menu="matMenu">
+                <button mat-menu-item routerLink="/whatsapp/{{ item.id }}">
+                  <mat-icon>share</mat-icon>
+                  <span>Compartilhar</span>
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-8">
-        <div class="input-group mb-3">
-            <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Parceiros</mat-label>
-                    <mat-select  [(value)]="selected">
-                        <mat-option *ngFor="let parceiro of parceiroCollection"  [value]="parceiro.id">
-                        {{parceiro.nome}}
-                        </mat-option>
-                    </mat-select>
-                    </mat-form-field>
-            </div>
-            <div class="input-group-append">
-                <button
-                class="btn btn-success"
-                    type="button"
-                    routerLink="/buscas/{{selected}}"
-                >
-                    Procurar Imagens na Web
+                <button mat-menu-item (click)="setActiveItem(item, i)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>Detalhes</span>
                 </button>
+                <button mat-menu-item routerLink="/image/{{ item.id }}">
+                  <mat-icon>image</mat-icon>
+                  <span>Imagem</span>
+                </button>
+                <button mat-menu-item routerLink="/add/image/{{ item.id }}">
+                  <mat-icon>image</mat-icon>
+                  <span>Adicionar Imagem</span>
+                </button>
+                <button mat-menu-item (click)="deleteItem(item)">
+                  <mat-icon>delete_forever</mat-icon>
+                  <span>Deletar</span>
+                </button>
+              </mat-menu>
             </div>
-        </div>
-    </div>
-<div class="col-md-6">
-        <h4>Lista de Itens</h4>
-    <div *ngFor="let item of ItemCollection; let i = index">
-        <mat-card 
-        [class.active]="i == currentIndex"
-        class="listitem">
-            <mat-card-title>{{item.descricao}} <div class="dots"><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="setActiveItem(item, i)">
-                <mat-icon>visibility</mat-icon>
-                <span>Detalhes</span>
-              </button>
-              <button mat-menu-item routerLink="/image/{{ item.id }}">
-                <mat-icon>image</mat-icon>
-                <span>Imagem</span>
-              </button>
-              <button mat-menu-item routerLink="/add/image/{{ item.id }}">
-                <mat-icon>image</mat-icon>
-                <span>Adicionar Imagem</span>
-              </button>
-              <button mat-menu-item (click)="deleteItem(item)">
-                <mat-icon>delete_forever</mat-icon>
-                <span>Deletar</span>
-              </button>
-            </mat-menu></div> </mat-card-title>
-            <mat-card-subtitle>{{ item.parceiro?.nome}}</mat-card-subtitle>
-            <mat-card-content>
-                {{item.barras}}
-            </mat-card-content>
-            <mat-card-actions>
-            </mat-card-actions>
-          </mat-card>
-          <br>
-    </div>
-</div>
-    <div class="col-md-6">
-        <div *ngIf="currentItem.id">
-        <h4>Item</h4>
-        <div>
-            <label><strong>Item:</strong></label> {{ currentItem.item }}
-        </div>
-        <div>
-            <label><strong>Descricao:</strong></label> {{ currentItem.descricao }}
-        </div>
-        <div>
-            <label><strong>Barras:</strong></label> {{ currentItem.barras }}
-        </div>
-        <div>
-            <label><strong>QuantidadeEstoque:</strong></label> {{ currentItem.quantidadeEstoque }}
-        </div>
-        <div>
-            <label><strong>Preco:</strong></label> {{ currentItem.preco }}
-        </div>
-        <div>
-            <label><strong>Precominimo:</strong></label> {{ currentItem.precominimo }}
-        </div>
-        <div>
-            <label><strong>Referencia:</strong></label> {{ currentItem.referencia }}
-        </div>
-        <div>
-            <label><strong>Marca:</strong></label> {{ currentItem.marca }}
-        </div>
-        <div>
-            <label><strong>Imagensdoitem:</strong></label> <img src="{{currentItem.imagensdoitem}}" width="300"/>
-        </div>
-        <div for="currentItem.parceiro">
-            <label><strong>ParceiroDoItem:</strong></label> {{ currentItem.parceiro }}
-        </div>
-
-        <a class="badge badge-warning" routerLink="/itens/{{ currentItem.id }}">
-            Editar
-        </a>
-        </div>
-
-        <div *ngIf="!currentItem">
+          </mat-card-title>
+          <mat-card-subtitle>{{ item.parceiro?.nome }}</mat-card-subtitle>
+          <mat-card-content>
+            {{ item.barras }}
+          </mat-card-content>
+          <mat-card-actions> </mat-card-actions>
+        </mat-card>
         <br />
-        <p>Por favor selecione uma linha da lista de Item...</p>
-        </div>
+      </div>
     </div>
+    </div>
+    <!-- <mat-paginator
+      [length]="1000"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="OnPageChange($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator> -->
+  </div>
 </div>
